@@ -1,0 +1,17 @@
+modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      preferred_ip_protocol: "ip4"
+      valid_status_codes: [200]
+      method: GET
+  http_post_2xx:
+    prober: http
+    http:
+      method: POST
+  icmp:                         # <== this is the one you already have
+      prober: icmp
+      timeout: 3s                # <== This depends on what you want to do
+      icmp:
+        preferred_ip_protocol: ip4
