@@ -15,6 +15,9 @@ It should be invested if this is usefull and if we don't want to use an http api
 docker-compose up
 ```
 
+Go to [localhost:3000](http://localhost:3000) to see the grafana dashboard.
+The preset credentials are username `admin` and password `foobar`.
+
 
 ## Resources
 
