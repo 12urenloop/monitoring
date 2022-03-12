@@ -5,6 +5,15 @@ A monitoring stack that makes use of grafana for visualizations.
 It also contains prometheus as option to collect metrics and serve them to grafana.
 It should be invested if this is usefull and if we don't want to use an http api instead.
 
+## Features
+
+- Status overview of the running services and devices. Pings devices and makes http requests to web servers. Also shows a map of the stations.
+- Data overview of telraam. Just a page with tables and a simple lap overview
+- WIP: Lap insight page. 
+  - See laps over time. 
+  - Detect sudden lap duration differences
+  - ...
+
 ## Requirements
 
 - docker-compose
