@@ -5,28 +5,28 @@ volumes:
   prometheus_data: {}
 
 services:
-  # prometheus:
-  #   image: prom/prometheus
-  #   volumes:
-  #     - ./prometheus/:/etc/prometheus
-  #     - prometheus_data:/prometheus
-  #   command:
-  #     - "--config.file=/etc/prometheus/prometheus.yml"
-  #     - "--storage.tsdb.path=/prometheus"
-  #     - "--web.console.libraries=/usr/share/prometheus/console_libraries"
-  #     - "--web.console.templates=/usr/share/prometheus/consoles"
-  #   # network_mode: host
-  #   depends_on:
-  #     - blackbox
-  #   ports:
-  #     - "9090:9090"
-  # blackbox:
-  #   build:
-  #     context: blackbox/
-  #     dockerfile: Dockerfile
-  #   # network_mode: host
-  #   ports:
-  #     - "9115:9115"
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    network_mode: host
+    depends_on:
+      - blackbox
+    # ports:
+    #   - "9090:9090"
+  blackbox:
+    build:
+      context: blackbox/
+      dockerfile: Dockerfile
+    network_mode: host
+    # ports:
+      # - "9115:9115"
   grafana:
     build:
       context: grafana
