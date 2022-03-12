@@ -3,6 +3,8 @@
   labels:
     service: station
     name: ronny01
+    lat: 51.04253
+    lon: 3.7263
 - targets:
     - 172.19.0.2
   labels:
