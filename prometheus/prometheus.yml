@@ -13,57 +13,28 @@ scrape_configs:
   #   static_configs:
   #     - targets: ["10.1.0.200:8080"]
 
-  # - job_name: blackbox
-  #   metrics_path: /probe
-  #   params:
-  #     module: [http_2xx]
-  #   static_configs:
-  #     - targets:
-  #         - "http://10.1.0.200:8081/ping"
-
-  #   relabel_configs:
-  #     - source_labels: [__address__]
-  #       target_label: __param_target
-  #     - source_labels: [__param_target]
-  #       target_label: instance
-  #     - target_label: __address__
-  #       replacement: "localhost:9115"
+  - job_name: blackbox
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    file_sd_configs:
+      - files:
+        - http_hosts.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: "localhost:9115"
 
   - job_name: blackbox-ping
     metrics_path: /probe
     params:
       module: [icmp]
-    static_configs:
-      - targets:
-          - 172.19.0.9
-        labels:
-          service: station
-          name: ronny01
-      - targets:
-          - 172.19.0.2
-        labels:
-          service: station
-          name: ronny02
-      - targets:
-          - 172.19.0.3
-        labels:
-          service: station
-          name: ronny03
-      - targets:
-          - 172.19.0.4
-        labels:
-          service: station
-          name: ronny04
-      - targets:
-          - 172.19.0.5
-        labels:
-          service: station
-          name: ronny05
-      - targets:
-          - 172.19.0.6
-        labels:
-          service: station
-          name: ronny06
+    file_sd_configs:
+      - files:
+        - ping_hosts.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

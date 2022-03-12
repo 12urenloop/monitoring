@@ -1,0 +1,30 @@
+- targets:
+    - 172.19.0.9:8000/time
+  labels:
+    service: station
+    name: ronny01
+- targets:
+    - 172.19.0.2:8000/time
+  labels:
+    service: station
+    name: ronny02
+- targets:
+    - 172.19.0.3:8000/time
+  labels:
+    service: station
+    name: ronny03
+- targets:
+    - 172.19.0.4:8000/time
+  labels:
+    service: station
+    name: ronny04
+- targets:
+    - 172.19.0.5:8000/time
+  labels:
+    service: station
+    name: ronny05
+- targets:
+    - 172.19.0.6:8000/time
+  labels:
+    service: station
+    name: ronny06
