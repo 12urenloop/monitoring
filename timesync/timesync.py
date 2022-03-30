@@ -5,7 +5,6 @@ from threading import Thread
 from config import SERVERS, REFRESH_INTERVAL
 
 
-
 class TimeMeasurement:
     def __init__(self, before, server_time, after):
         self.before = before
@@ -52,7 +51,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return jsonify([serialize(name, measurement)
+    return jsonify([
+        serialize(name, measurement)
         for name, measurement
         in server_status.items()
     ])
