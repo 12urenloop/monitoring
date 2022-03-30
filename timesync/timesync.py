@@ -44,7 +44,7 @@ def fetch_routine():
     while True:
         for name, url in SERVERS.items():
             server_status[name] = get_server_sync(url)
-        time.sleep(REFRESH_INTERVAL / len(SERVERS))
+            time.sleep(REFRESH_INTERVAL / len(SERVERS))
 
 
 app = Flask(__name__)
