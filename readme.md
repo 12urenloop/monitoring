@@ -22,6 +22,8 @@ Use it together with the [mityri](https://github.com/12urenloop/mityri) mock too
 
 ## Usage
 
+Configure the configuration of the Stations and Telraam in the `prometheus` folder.
+
 ```
 docker-compose up
 ```

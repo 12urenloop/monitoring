@@ -10,7 +10,7 @@ prod-deps: base-deps
 
 
 dev: dev-deps
-	python timesync.py
+	python3 timesync.py
 	
 prod: prod-deps
-	python -m gunicorn -k gevent -b 0.0.0.0:5000 "wsgi:app"
+	python3 -m gunicorn -k gevent -b 0.0.0.0:3030 "wsgi:app"
