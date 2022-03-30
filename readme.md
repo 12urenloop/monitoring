@@ -9,7 +9,7 @@ Use it together with the [mityri](https://github.com/12urenloop/mityri) mock too
 
 ## Features
 
-- Status overview of the running services and devices. Pings devices and makes http requests to web servers. Also shows a map of the stations.
+- Status overview of the running services and devices. Pings devices and makes http requests to web servers. Shows a map of the stations. Tracks the time sync between our services.
 - Data overview of telraam. Just a page with tables and a simple lap overview
 - WIP: Lap insight page. 
   - See laps over time. 
