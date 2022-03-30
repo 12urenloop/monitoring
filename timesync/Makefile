@@ -1,8 +1,5 @@
 .PHONY: init base-deps dev-deps prod-deps dev prod
 
-init:
-	pip install -r requirements.txt
-
 base-deps:
 	pip install -r requirements.txt
 
