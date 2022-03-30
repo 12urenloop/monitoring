@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Blueprint
 import requests
 import time
 from threading import Thread
@@ -40,23 +40,34 @@ def serialize(name, measurement):
 server_status = {}
 
 def fetch_routine():
+    print("Starting fetch routine")
+    print(f"Will refresh a timestamps every {REFRESH_INTERVAL} s")
     while True:
         for name, url in SERVERS.items():
             server_status[name] = get_server_sync(url)
+            print(f"Fetched {name}")
             time.sleep(REFRESH_INTERVAL / len(SERVERS))
 
 
-app = Flask(__name__)
+root = Blueprint('root', __name__, url_prefix='')
 
-
-@app.route('/')
-def root():
+@root.route('/')
+def home():
     return jsonify([
         serialize(name, measurement)
         for name, measurement
         in server_status.items()
     ])
 
-if __name__ == '__main__':
+
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(root)
+
     Thread(target=fetch_routine, daemon=True).start()
-    app.run(debug=False, host='0.0.0.0', port=8080)
+
+    return app
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=False, host='0.0.0.0', port=5000)
