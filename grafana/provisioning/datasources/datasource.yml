@@ -53,7 +53,7 @@ datasources:
     url: 'http://10.1.0.175:3000'
   - name: 'Telraam API'
     type: 'marcusolsson-json-datasource'
-    url: 'http://localhost:8080'
+    url: 'http://172.12.50.21:8080'
     # url: 'http://10.1.0.200:8080'
   - name: 'Telraam Admin API'
     type: 'marcusolsson-json-datasource'

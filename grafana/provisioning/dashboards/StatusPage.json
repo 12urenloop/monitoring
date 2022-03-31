@@ -163,7 +163,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^offset$/",
+          "fields": "/^abs_offset$/",
           "values": true
         },
         "showUnfilled": true,
@@ -181,13 +181,7 @@
               "type": "string"
             },
             {
-              "jsonPath": "$.[*].offset",
-              "language": "jsonpath",
-              "name": "",
-              "type": "number"
-            },
-            {
-              "jsonPath": "$.[*].accuracy",
+              "jsonPath": "$.[*].abs_offset",
               "language": "jsonpath",
               "name": "",
               "type": "number"
@@ -249,7 +243,7 @@
       },
       "gridPos": {
         "h": 16,
-        "w": 12,
+        "w": 6,
         "x": 0,
         "y": 10
       },
@@ -290,9 +284,9 @@
         ],
         "view": {
           "id": "coords",
-          "lat": 51.04253,
-          "lon": 3.7263,
-          "zoom": 18
+          "lat": 51.205148,
+          "lon": 3.216841,
+          "zoom": 17.93
         }
       },
       "pluginVersion": "8.2.0-33922pre",
@@ -308,6 +302,150 @@
       ],
       "title": "Map",
       "type": "geomap"
+    },
+    {
+      "datasource": "Timesync API",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
+                "color": "red",
+                "value": 30
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 3,
+        "x": 6,
+        "y": 10
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^time_since_seen$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.0-33922pre",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.[*].time_since_seen",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.[*].name",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/batons"
+        }
+      ],
+      "title": "Baton last seen",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "name"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": "Timesync API",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 3,
+        "x": 9,
+        "y": 10
+      },
+      "id": 21,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "8.2.0-33922pre",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.[*]"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/batons"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "table"
     },
     {
       "datasource": null,
@@ -715,7 +853,7 @@
       "type": "state-timeline"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 31,
   "style": "dark",
   "tags": [],
@@ -730,5 +868,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 8
+  "version": 2
 }

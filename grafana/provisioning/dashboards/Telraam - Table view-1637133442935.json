@@ -21,12 +21,11 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
+      "collapsed": true,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -34,9 +33,9 @@
         "x": 0,
         "y": 0
       },
-      "id": 16,
+      "id": 20,
       "panels": [],
-      "title": "Visualisations",
+      "title": "Laps",
       "type": "row"
     },
     {
@@ -44,20 +43,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMin": 0,
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1
+            "align": "auto",
+            "displayMode": "auto"
           },
           "mappings": [],
           "thresholds": {
@@ -82,36 +72,31 @@
         "x": 0,
         "y": 1
       },
-      "id": 18,
+      "id": 22,
       "options": {
-        "barWidth": 0.97,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "orientation": "horizontal",
-        "showValue": "always",
-        "stacking": "none",
-        "text": {},
-        "tooltip": {
-          "mode": "single"
-        }
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "timestamp"
+          }
+        ]
       },
       "pluginVersion": "8.2.0-33922pre",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 5,
           "fields": [
             {
-              "jsonPath": "$.[*].teamId",
-              "language": "jsonpath",
-              "name": "",
-              "type": "string"
+              "jsonPath": "$.[*].id"
             },
             {
               "jsonPath": "$.[*].lapSourceId",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].teamId",
               "language": "jsonpath",
               "name": ""
             },
@@ -125,80 +110,23 @@
           "method": "GET",
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/lap"
+          "urlPath": "/accepted-laps"
         }
       ],
-      "title": "Team laps",
-      "transformations": [
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "lapSourceId": {
-                "aggregations": [
-                  "allValues"
-                ],
-                "operation": "groupby"
-              },
-              "teamId": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "timestamp": {
-                "aggregations": [
-                  "allValues"
-                ],
-                "operation": "aggregate"
-              }
-            }
-          }
-        },
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "lapSourceId": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "lapSourceId (allValues)": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "teamId": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "timestamp": {
-                "aggregations": [
-                  "count"
-                ],
-                "operation": "aggregate"
-              },
-              "timestamp (allValues)": {
-                "aggregations": [
-                  "count"
-                ],
-                "operation": "aggregate"
-              }
-            }
-          }
-        },
-        {
-          "disabled": true,
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Laps"
-              }
-            ]
-          }
-        }
-      ],
-      "type": "barchart"
+      "title": "Accepted laps",
+      "type": "table"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 16,
+      "title": "Detections",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -207,7 +135,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 14,
       "panels": [],
@@ -246,7 +174,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 10
+        "y": 11
       },
       "id": 8,
       "options": {
@@ -307,11 +235,17 @@
         "h": 8,
         "w": 12,
         "x": 6,
-        "y": 10
+        "y": 11
       },
       "id": 10,
       "options": {
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "batonId"
+          }
+        ]
       },
       "pluginVersion": "8.2.0-33922pre",
       "targets": [
@@ -377,7 +311,7 @@
         "h": 23,
         "w": 6,
         "x": 18,
-        "y": 10
+        "y": 11
       },
       "id": 2,
       "options": {
@@ -414,35 +348,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "align": "auto",
+            "displayMode": "auto"
           },
           "mappings": [],
           "thresholds": {
@@ -459,25 +369,57 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 113
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "id"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 108
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "distanceFromStart"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 165
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 17,
         "w": 6,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 6,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
+        "showHeader": true,
+        "sortBy": []
       },
+      "pluginVersion": "8.2.0-33922pre",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -489,16 +431,21 @@
               "jsonPath": "$.[*].name",
               "language": "jsonpath",
               "name": ""
+            },
+            {
+              "jsonPath": "$.[*].distanceFromStart",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/beacon"
+          "urlPath": "/station"
         }
       ],
       "title": "Beacon",
-      "type": "timeseries"
+      "type": "table"
     },
     {
       "datasource": "Telraam API",
@@ -532,7 +479,7 @@
         "h": 15,
         "w": 12,
         "x": 6,
-        "y": 18
+        "y": 19
       },
       "id": 12,
       "options": {
@@ -584,12 +531,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Telraam - Table view",
   "uid": "rs4b9y5nz",
-  "version": 6
+  "version": 4
 }

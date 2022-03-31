@@ -1,42 +1,49 @@
 - targets:
-    - 172.19.0.9
+    - 172.12.50.101
   labels:
     service: station
     name: ronny01
-    lat: 51.04253
-    lon: 3.7263
+    lat: 51.20524
+    lon: 3.21711
 - targets:
-    - 172.19.0.2
+    - 172.12.50.102
   labels:
     service: station
     name: ronny02
-    lat: 51.04304
-    lon: 3.72615
+    lat: 51.20504
+    lon: 3.21723
 - targets:
-    - 172.19.0.3
+    - 172.12.50.103
   labels:
     service: station
     name: ronny03
-    lat: 51.04286
-    lon: 3.72574
+    lat: 51.20480
+    lon: 3.21724
 - targets:
-    - 172.19.0.4
+    - 172.12.50.104
   labels:
     service: station
     name: ronny04
-    lat: 51.04236
-    lon: 3.72568
+    lat: 51.20485
+    lon: 3.21773
 - targets:
-    - 172.19.0.5
+    - 172.12.50.105
   labels:
     service: station
     name: ronny05
-    lat: 51.04198
-    lon: 3.72577
+    lat: 51.20520
+    lon: 3.21759
 - targets:
-    - 172.19.0.6
+    - 172.12.50.106
   labels:
     service: station
     name: ronny06
-    lat: 51.04202
-    lon: 3.72622
+    lat: 51.20545
+    lon: 3.21748
+- targets:
+    - 172.12.50.107
+  labels:
+    service: station
+    name: ronny07
+    lat: 51.20566
+    lon: 3.21713

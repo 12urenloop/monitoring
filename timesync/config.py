@@ -11,5 +11,5 @@ TELRAAM_STATION_URL = 'http://172.12.50.21:8080'
 #  with the amount of milliseconds since the Unix epoch
 EXTRA_SERVERS = {
     'Telraam': TELRAAM_STATION_URL,
-    'Manualcount': 'http://172.12.50.21:3000'
+    'Manualcount': 'http://172.12.50.21:3000',
 }
