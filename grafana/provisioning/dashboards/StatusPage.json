@@ -25,20 +25,6 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 13,
-      "panels": [],
-      "title": "IT Container",
-      "type": "row"
-    },
-    {
       "datasource": null,
       "fieldConfig": {
         "defaults": {
@@ -80,9 +66,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 9,
       "options": {
@@ -151,14 +137,16 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 1
+        "w": 4,
+        "x": 8,
+        "y": 0
       },
       "id": 17,
       "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -166,8 +154,8 @@
           "fields": "/^abs_offset$/",
           "values": true
         },
-        "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "textMode": "auto"
       },
       "pluginVersion": "8.2.0-33922pre",
       "targets": [
@@ -201,21 +189,97 @@
       ],
       "title": "Time Sync | Offsets",
       "transformations": [],
-      "type": "bargauge"
+      "type": "stat"
     },
     {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 9
+      "datasource": "Timesync API",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
       },
-      "id": 11,
-      "panels": [],
-      "title": "Stations",
-      "type": "row"
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 12,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^battery$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.0-33922pre",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.[*].name",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$.[*].battery",
+              "language": "jsonpath",
+              "name": "",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/batons"
+        }
+      ],
+      "title": "Battery percentage",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "name"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "stat"
     },
     {
       "datasource": null,
@@ -242,10 +306,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 16,
+        "h": 18,
         "w": 6,
         "x": 0,
-        "y": 10
+        "y": 8
       },
       "id": 15,
       "options": {
@@ -332,10 +396,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
+        "h": 18,
         "w": 3,
         "x": 6,
-        "y": 10
+        "y": 8
       },
       "id": 19,
       "options": {
@@ -398,21 +462,27 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto"
-          },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "green",
+                  "index": 1
+                },
+                "true": {
+                  "color": "red",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "yellow",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -420,14 +490,26 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
+        "h": 18,
         "w": 3,
         "x": 9,
-        "y": 10
+        "y": 8
       },
       "id": 21,
       "options": {
-        "showHeader": true
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^rebooted$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
       },
       "pluginVersion": "8.2.0-33922pre",
       "targets": [
@@ -435,7 +517,13 @@
           "cacheDurationSeconds": 0,
           "fields": [
             {
-              "jsonPath": "$.[*]"
+              "jsonPath": "$.[*].rebooted",
+              "type": "boolean"
+            },
+            {
+              "jsonPath": "$.[*].name",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
@@ -444,8 +532,22 @@
           "urlPath": "/batons"
         }
       ],
-      "title": "Panel Title",
-      "type": "table"
+      "title": "Baton restarted",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "name"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "stat"
     },
     {
       "datasource": null,
@@ -502,7 +604,7 @@
         "h": 4,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 8
       },
       "id": 4,
       "options": {
@@ -612,7 +714,7 @@
         "h": 4,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 12
       },
       "id": 6,
       "options": {
@@ -696,10 +798,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 6,
         "x": 12,
-        "y": 18
+        "y": 16
       },
       "id": 2,
       "options": {
@@ -797,10 +899,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 6,
         "x": 18,
-        "y": 18
+        "y": 16
       },
       "id": 7,
       "options": {
@@ -868,5 +970,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 2
+  "version": 5
 }
