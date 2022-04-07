@@ -1,5 +1,5 @@
 from socket import timeout
-from flask import Flask, jsonify, Blueprint
+from flask import Flask, jsonify, Blueprint, request
 import requests
 import time
 from threading import Thread
@@ -58,6 +58,7 @@ class BatonStatus:
     battery: float = 0
     uptime: float = 0
     rebooted: bool = False
+    last_detected_at_station: str = ""
 
 
 def serialize_batonstatus(mac, baton_status: BatonStatus, name: str):
@@ -67,7 +68,8 @@ def serialize_batonstatus(mac, baton_status: BatonStatus, name: str):
         'uptime': str(datetime.timedelta(seconds=baton_status.uptime / 1000)),
         'rebooted': baton_status.rebooted,
         'time_since_seen': time.time() - baton_status.last_seen,
-        'name': name
+        'name': name,
+        'last_detected_at_station': baton_status.last_detected_at_station
     }
 
 server_status = {}
@@ -76,6 +78,8 @@ baton_status_dict = {}
 per_station_last_id = {}
 baton_name_to_mac = {}
 baton_mac_to_name = {}
+baton_mac_to_id = {}
+assigned_baton_ids = set()
 
 def first_initialize_stations():
     for name, url in station_urls.items():
@@ -110,6 +114,7 @@ def update_from_station(station_name, url):
                 baton_status.last_seen = detection_time
                 baton_status.battery = battery
                 baton_status.uptime = uptime
+                baton_status.last_detected_at_station = station_name
             per_station_last_id[station_name] = max(detection['id'], per_station_last_id.get(station_name, 0))
         logging.info(f"Success station update {station_name} got {per_station_last_id.get(station_name, 0) - begin} records, now at {per_station_last_id[station_name]}")
     except requests.exceptions.Timeout:
@@ -138,16 +143,29 @@ def fetch_routine():
             if 'name' in data[0]:
                 baton_mac_to_name.clear()
                 baton_name_to_mac.clear()
+                baton_mac_to_id.clear()
                 for baton_obj in data:
                     mac = baton_obj['mac'].lower()
                     name = baton_obj['name']
+                    id_ = baton_obj['id']
                     baton_mac_to_name[mac] = name
+                    baton_mac_to_id[mac] = id_
                     baton_name_to_mac[name] = mac
                     if mac not in baton_status_dict:
                         baton_status_dict[mac] = BatonStatus()
                 logging.info("Telraam fetch batons success")
         except:
             logging.error("Telraam fetch batons failed")
+        
+        try:
+            data = requests.get(TELRAAM_STATION_URL + '/team', timeout=1).json()
+            if 'name' in data[0]:
+                assigned_baton_ids.clear()
+                for team_obj in data:
+                    assigned_baton_ids.add(team_obj['batonId'])
+                logging.info("Telraam fetch teams success")
+        except:
+            logging.error("Telraam fetch teams failed")
 
         # # FETCH TIMESYNC
         logging.info("Starting timestamp fetch routine")
@@ -181,10 +199,12 @@ def home():
 
 @root.route('/batons')
 def batons():
+    do_filter_assigned = 'filter_assigned' in request.args
     return jsonify(sorted([
         serialize_batonstatus(mac, batonstatus, baton_mac_to_name[mac])
         for mac, batonstatus
         in baton_status_dict.items()
+        if (not do_filter_assigned) or (mac in baton_mac_to_id and baton_mac_to_id[mac] in assigned_baton_ids)
     ], key=lambda x: x['name']))
 
 
