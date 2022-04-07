@@ -1,0 +1,9 @@
+https://docs.docker.com/storage/volumes/
+done now at the end of the 6ul event
+`docker run --rm --volumes-from monitoring_prometheus_1 -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /prometheus`
+
+then for a next time:
+
+new container
+docker run -v /dbdata --name dbstore2 ubuntu /bin/bash
+docker run --rm --volumes-from dbstore2 -v $(pwd):/backup ubuntu bash -c "cd /dbdata && tar xvf /backup/backup.tar --strip 1"
