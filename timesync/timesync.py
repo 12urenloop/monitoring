@@ -116,7 +116,7 @@ def update_from_station(station_name, url):
                 baton_status.uptime = uptime
                 baton_status.last_detected_at_station = station_name
             per_station_last_id[station_name] = max(detection['id'], per_station_last_id.get(station_name, 0))
-        logging.info(f"Success station update {station_name} got {per_station_last_id.get(station_name, 0) - begin} records, now at {per_station_last_id[station_name]}")
+        logging.info(f"Success station update {station_name} got {per_station_last_id.get(station_name, 0) - begin} records, now at {per_station_last_id.get(station_name, 0)}")
     except requests.exceptions.Timeout:
         logging.warning(f"Failed station update {station_name} (timeout)")
     except:
@@ -128,6 +128,8 @@ def fetch_routine():
     first_initialized = False
     while True:
         logging.info(f"Will refresh every {REFRESH_INTERVAL} s")
+ 
+        # Fetch station data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/station', timeout=1).json()
             if 'name' in data[0]:
@@ -138,6 +140,7 @@ def fetch_routine():
         except:
             logging.error("Telraam fetch stations failed")
         
+        # Fetch baton data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/baton', timeout=1).json()
             if 'name' in data[0]:
@@ -157,6 +160,7 @@ def fetch_routine():
         except:
             logging.error("Telraam fetch batons failed")
         
+        # Fetch team data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/team', timeout=1).json()
             if 'name' in data[0]:
