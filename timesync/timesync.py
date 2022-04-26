@@ -74,7 +74,10 @@ def serialize_batonstatus(mac, baton_status: BatonStatus, name: str):
 
 server_status = {}
 station_urls = {}
+
+# mac to baton_status
 baton_status_dict = {}
+
 per_station_last_id = {}
 baton_name_to_mac = {}
 baton_mac_to_name = {}
@@ -211,6 +214,15 @@ def batons():
         if (not do_filter_assigned) or (mac in baton_mac_to_id and baton_mac_to_id[mac] in assigned_baton_ids)
     ], key=lambda x: x['name']))
 
+
+@root.route('/reset_rebooted/<mac>', methods=['POST'])
+def reset_rebooted(mac):
+    if mac not in baton_status_dict:
+        return 'mac address not found'
+    if not baton_status_dict[mac].rebooted:
+        return 'This baton was not rebooted; no need to reset it'
+    baton_status_dict[mac].rebooted = False
+    return 'OK'
 
 def create_app():
     app = Flask(__name__)
