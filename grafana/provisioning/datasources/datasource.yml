@@ -50,7 +50,7 @@ datasources:
     editable: true
   - name: 'ManualCount API'
     type: 'marcusolsson-json-datasource'
-    url: 'http://10.1.0.175:3000'
+    url: 'http://172.12.50.21:3000'
   - name: 'Telraam API'
     type: 'marcusolsson-json-datasource'
     url: 'http://172.12.50.21:8080'

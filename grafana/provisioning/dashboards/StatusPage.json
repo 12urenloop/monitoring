@@ -348,9 +348,9 @@
         ],
         "view": {
           "id": "coords",
-          "lat": 51.205148,
-          "lon": 3.216841,
-          "zoom": 17.93
+          "lat": 51.042569,
+          "lon": 3.725806,
+          "zoom": 17.68
         }
       },
       "pluginVersion": "8.2.0-33922pre",
@@ -970,5 +970,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 5
+  "version": 7
 }

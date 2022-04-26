@@ -4,7 +4,7 @@ import logging
 LOGGING_LEVEL = logging.INFO
 REFRESH_INTERVAL = 1
 
-TELRAAM_STATION_URL = 'http://127.0.0.1:8080'
+TELRAAM_STATION_URL = 'http://172.12.50.21:8080'
 
 # Dictionary of (name, url)
 # Expects url's to have a `/time` endpoint returning a json dictionary containing a `time` key
