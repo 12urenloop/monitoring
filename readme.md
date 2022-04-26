@@ -9,8 +9,11 @@ Use it together with the [mityri](https://github.com/12urenloop/mityri) mock too
 
 ## Features
 
-- Status overview of the running services and devices. Pings devices and makes http requests to web servers. Shows a map of the stations. Tracks the time sync between our services.
-- Data overview of telraam. Just a page with tables and a simple lap overview
+- **Status overview**: Status of the running services and devices. Pings devices and makes http requests to web servers. Shows a map of the stations. Tracks the time sync between our services.
+  - Baton battery percentage
+  - Baton battery last seen time
+  - Baton restarted status: if a baton uptime changes more then 3s between detections it is seen as *restarted*. This means something is going wrong and you want to check the baton for malfuctioning parts. If everything is fine you can set this restart status as fine by posting to the endpoint `/reset_rebooted/<mac>`. Restarting the timesync server re-mark this baton as restarted.
+- **Data overview** of telraam. Just a page with tables and a simple lap overview
 - WIP: Lap insight page. 
   - See laps over time. 
   - Detect sudden lap duration differences
