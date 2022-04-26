@@ -1,3 +1,7 @@
+"""
+Shows an aggregate of different lap sources compared to eachother
+"""
+
 import requests
 import matplotlib.pyplot as plt
 import json
