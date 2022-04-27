@@ -17,7 +17,7 @@ groups:
     annotations:
       summary: Probe failed!
   - alert: high_load
-    expr: node_load1 > 0.5
+    expr: node_load1 > 0.6
     for: 2m
     labels:
       severity: page
