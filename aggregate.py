@@ -13,8 +13,8 @@ def process_laps(laps):
     counts = {}
 
     for lap in laps:
-        if lap["timestamp"] < 1648737000000:
-            continue
+        # if lap["timestamp"] < 1648737000000:
+        #    continue
         teamId = lap["teamId"]
         team = teams[teamId]["name"]
 
@@ -48,7 +48,8 @@ count_combi_laps = process_laps(laps_combi)
 for k in count_laps.keys():
     count_laps[k] = {**count_laps[k], **count_combi_laps[k]}
 
-print(json.dumps(count_laps))
+# print(json.dumps(count_laps))
+pprint(count_laps)
 
 #print(count_laps[list(teams.values())])
 team_names = list(map(lambda a:a['name'], sorted(teams.values(), key=lambda a:count_laps.get(a['name'], dict()).get('combi_lapper', 0), reverse=True)))

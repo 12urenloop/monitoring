@@ -64,6 +64,7 @@ datasources:
   - name: 'Timesync API'
     type: 'marcusolsson-json-datasource'
     url: 'http://localhost:3030'
+
   - name: 'Infinity'
     type: 'yesoreyeram-infinity-datasource'
     url: 'http://localhost:8000'

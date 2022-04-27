@@ -215,6 +215,66 @@ def batons():
     ], key=lambda x: x['name']))
 
 
+# --------------------------------------------------
+# ---------------- LAP INSIGHT ---------------------
+
+import requests
+from pprint import pprint
+
+
+@root.route('/team-lap-times', methods=['GET'])
+def lap_frequencies():
+    LAP_SOURCE = 3
+
+    laps = requests.get(TELRAAM_STATION_URL + "/lap").json()
+    teams = requests.get(TELRAAM_STATION_URL + "/team").json()
+    teams = {t["id"]: t for t in teams}
+    laps.sort(key=lambda x: x["timestamp"])
+
+    previous_laps = {}
+    team_times = {}
+
+    data = {}
+
+    for lap in laps:
+        if lap["lapSourceId"] != LAP_SOURCE:
+            continue
+        team_id = lap["teamId"]
+        if team_id not in team_times:
+            team_times[team_id] = []
+        if team_id not in previous_laps:
+            previous_laps[team_id] = lap
+            continue
+        previous_lap = previous_laps[team_id]
+        previous_laps[team_id] = lap
+
+        team_times[team_id].append({"lap_time": (lap["timestamp"] - previous_lap["timestamp"]) /
+                                                1000,
+                                    "timestamp": lap["timestamp"],
+                                    "team_id": team_id,
+                                    "team_name": teams[team_id]["name"]})
+
+        # if lap["timestamp"] not in data:
+        #     data[lap["timestamp"]] = {}
+        # data[lap["timestamp"]][team_id] = (lap["timestamp"] - previous_lap["timestamp"]) / 1000
+
+    return team_times
+    # return data
+
+    # {hilok: [{lap-time: "", timestamp: ""}],
+    #  vtk  : [{}, {}, {}]}
+
+    # for i in sorted(team_times.keys()):
+    #
+    # for i in [1, 2, 22, 7]:
+    #     print(f"Team {i}")
+    #     for lap in team_times[i]:
+    #         if lap < 30 or lap > 70:
+    #             print(lap)
+
+
+# --------------------------------------------------
+
 @root.route('/reset_rebooted/<mac>', methods=['POST'])
 def reset_rebooted(mac):
     if mac not in baton_status_dict:
