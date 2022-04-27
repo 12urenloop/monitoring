@@ -208,11 +208,15 @@
               },
               {
                 "color": "orange",
-                "value": 20
+                "value": 30
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
               },
               {
                 "color": "green",
-                "value": 30
+                "value": 60
               }
             ]
           },
@@ -259,6 +263,12 @@
             }
           ],
           "method": "GET",
+          "params": [
+            [
+              "filter_assigned",
+              "1"
+            ]
+          ],
           "queryParams": "",
           "refId": "A",
           "urlPath": "/batons"
@@ -276,6 +286,116 @@
                 "field": "name"
               }
             ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Offline"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Online"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "Unreachable"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.0-33922pre",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox-ping\", service=\"client1\"}",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Client1",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Metric"
+              }
+            ]
+          }
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "many"
           }
         }
       ],
@@ -315,7 +435,7 @@
       "options": {
         "basemap": {
           "config": {},
-          "type": "default"
+          "type": "xyz"
         },
         "controls": {
           "mouseWheelZoom": true,
@@ -433,6 +553,12 @@
             }
           ],
           "method": "GET",
+          "params": [
+            [
+              "filter_assigned",
+              "1"
+            ]
+          ],
           "queryParams": "",
           "refId": "A",
           "urlPath": "/batons"
@@ -527,6 +653,12 @@
             }
           ],
           "method": "GET",
+          "params": [
+            [
+              "filter_assigned",
+              "1"
+            ]
+          ],
           "queryParams": "",
           "refId": "A",
           "urlPath": "/batons"
@@ -970,5 +1102,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 7
+  "version": 8
 }
