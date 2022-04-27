@@ -12,6 +12,7 @@ import logging
 logging.getLogger().setLevel(LOGGING_LEVEL)
 server_start_moment = time.time()
 
+
 class TimeMeasurement:
     def __init__(self, before, server_time, after):
         self.before = before
@@ -43,14 +44,16 @@ def get_server_sync(name, url):
     after = time.time()
     return TimeMeasurement(before, server_time, after)
 
+
 def serialize_timemeasurement(name, measurement):
-        if measurement is None:
-            r =  {'name': name, 'success': False, 'offset': 0, 'accuracy': 0}
-        else:
-            r =  {'name': name, 'success': True, 'offset': measurement.offset(), 'accuracy': measurement.accuracy()}
-        r['abs_offset'] = abs(r['offset'])
-        r['abs_accuracy'] = abs(r['accuracy'])
-        return r
+    if measurement is None:
+        r = {'name': name, 'success': False, 'offset': 0, 'accuracy': 0}
+    else:
+        r = {'name': name, 'success': True, 'offset': measurement.offset(), 'accuracy': measurement.accuracy()}
+    r['abs_offset'] = abs(r['offset'])
+    r['abs_accuracy'] = abs(r['accuracy'])
+    return r
+
 
 @dataclass
 class BatonStatus:
@@ -72,6 +75,7 @@ def serialize_batonstatus(mac, baton_status: BatonStatus, name: str):
         'last_detected_at_station': baton_status.last_detected_at_station
     }
 
+
 server_status = {}
 station_urls = {}
 
@@ -83,6 +87,7 @@ baton_name_to_mac = {}
 baton_mac_to_name = {}
 baton_mac_to_id = {}
 assigned_baton_ids = set()
+
 
 def first_initialize_stations():
     for name, url in station_urls.items():
@@ -96,11 +101,11 @@ def first_initialize_stations():
             logging.error(traceback.format_exc())
             logging.error(f"Failed first init {name}")
 
-        
 
 def update_from_station(station_name, url):
     try:
-        detections = requests.get(url + f'/detections/{per_station_last_id.get(station_name, 0)}', timeout=1).json()['detections']
+        detections = requests.get(url + f'/detections/{per_station_last_id.get(station_name, 0)}', timeout=1).json()[
+            'detections']
         begin = per_station_last_id.get(station_name, 0)
         for detection in detections:
             mac = detection['mac']
@@ -110,7 +115,7 @@ def update_from_station(station_name, url):
             if mac not in baton_status_dict:
                 baton_status_dict[mac] = BatonStatus(0)
             baton_status = baton_status_dict[mac]
-            
+
             if baton_status.last_seen < detection_time and detection_time > server_start_moment:
                 if uptime < baton_status.uptime - 3000:
                     baton_status.rebooted = True
@@ -119,7 +124,8 @@ def update_from_station(station_name, url):
                 baton_status.uptime = uptime
                 baton_status.last_detected_at_station = station_name
             per_station_last_id[station_name] = max(detection['id'], per_station_last_id.get(station_name, 0))
-        logging.info(f"Success station update {station_name} got {per_station_last_id.get(station_name, 0) - begin} records, now at {per_station_last_id.get(station_name, 0)}")
+        logging.info(
+            f"Success station update {station_name} got {per_station_last_id.get(station_name, 0) - begin} records, now at {per_station_last_id.get(station_name, 0)}")
     except requests.exceptions.Timeout:
         logging.warning(f"Failed station update {station_name} (timeout)")
     except:
@@ -131,7 +137,7 @@ def fetch_routine():
     first_initialized = False
     while True:
         logging.info(f"Will refresh every {REFRESH_INTERVAL} s")
- 
+
         # Fetch station data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/station', timeout=1).json()
@@ -142,7 +148,7 @@ def fetch_routine():
                 logging.info("Telraam fetch stations success")
         except:
             logging.error("Telraam fetch stations failed")
-        
+
         # Fetch baton data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/baton', timeout=1).json()
@@ -162,7 +168,7 @@ def fetch_routine():
                 logging.info("Telraam fetch batons success")
         except:
             logging.error("Telraam fetch batons failed")
-        
+
         # Fetch team data from telraam
         try:
             data = requests.get(TELRAAM_STATION_URL + '/team', timeout=1).json()
@@ -176,25 +182,24 @@ def fetch_routine():
 
         # # FETCH TIMESYNC
         logging.info("Starting timestamp fetch routine")
-        for name, url in station_urls.items() :
+        for name, url in station_urls.items():
             server_status[name] = get_server_sync(name, url)
-        for name, url in EXTRA_SERVERS.items() :
+        for name, url in EXTRA_SERVERS.items():
             server_status[name] = get_server_sync(name, url)
-        
-
 
         # FETCH BATON STATUS
         if not first_initialized:
             first_initialize_stations()
             first_initialized = True
 
-        for name, url in station_urls.items() :
+        for name, url in station_urls.items():
             update_from_station(name, url)
             logging.info(f"Fetched stations {name}")
         time.sleep(REFRESH_INTERVAL)
 
 
 root = Blueprint('root', __name__, url_prefix='')
+
 
 @root.route('/')
 def home():
@@ -203,6 +208,7 @@ def home():
         for name, measurement
         in server_status.items()
     ])
+
 
 @root.route('/batons')
 def batons():
@@ -220,6 +226,26 @@ def batons():
 
 import requests
 from pprint import pprint
+
+
+@root.route('/team-detection-times', methods=['GET'])
+def detection_times():
+    teams = requests.get(TELRAAM_STATION_URL + "/team").json()
+    detections = requests.get(TELRAAM_STATION_URL + "/detection").json()
+    teams_for_baton = {t["batonId"]: t for t in teams}
+
+    team_detections = {}
+    for detection in detections:
+        baton_id = detection['batonId']
+        if baton_id not in team_detections:
+            team_detections[baton_id] = []
+        team_detections[baton_id].append({
+            "detection_time": detection["timestamp"],
+            "rssi": detection["rssi"],
+            "team_id": detection["batonId"],
+            "team_name": teams_for_baton[baton_id]["name"]
+        })
+    return team_detections
 
 
 @root.route('/team-lap-times', methods=['GET'])
@@ -284,6 +310,7 @@ def reset_rebooted(mac):
     baton_status_dict[mac].rebooted = False
     return 'OK'
 
+
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(root)
@@ -291,6 +318,7 @@ def create_app():
     Thread(target=fetch_routine, daemon=True).start()
 
     return app
+
 
 if __name__ == '__main__':
     app = create_app()

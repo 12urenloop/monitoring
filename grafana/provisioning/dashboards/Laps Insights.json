@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -19,14 +22,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1651062443562,
+  "iteration": 1651075961184,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": "Timesync API",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "hpBfenUnk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -64,8 +70,7 @@
             }
           },
           "mappings": [],
-          "max": 200,
-          "min": 20,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -89,7 +94,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "lap_time 7"
+                  "16 lap_time"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -126,13 +131,18 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.0-33922pre",
       "targets": [
         {
-          "cacheDurationSeconds": 60,
+          "cacheDurationSeconds": 30,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "hpBfenUnk"
+          },
           "experimentalGroupByField": "team_id",
           "fields": [
             {
@@ -164,26 +174,25 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
-  "schemaVersion": 31,
+  "refresh": false,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [],
           "value": []
         },
-        "datasource": "Telraam API",
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "ItBfe78nk"
+        },
         "definition": "$.[*].name",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": true,
         "name": "Teams",
         "options": [],
@@ -211,11 +220,12 @@
   },
   "time": {
     "from": "2022-04-27T07:00:00.000Z",
-    "to": "now"
+    "to": "2022-04-27T19:00:00.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Lap insights Copy",
   "uid": "LW6gz8Q7z",
-  "version": 4
+  "version": 6,
+  "weekStart": ""
 }
