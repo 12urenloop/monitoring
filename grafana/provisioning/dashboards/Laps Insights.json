@@ -21,7 +21,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1651055774983,
+  "iteration": 1651062443562,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -44,7 +44,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
             },
@@ -64,8 +64,8 @@
             }
           },
           "mappings": [],
-          "max": 150,
-          "min": 0,
+          "max": 200,
+          "min": 20,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -89,7 +89,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "11 lap_time"
+                  "lap_time 7"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -109,7 +109,7 @@
         ]
       },
       "gridPos": {
-        "h": 24,
+        "h": 14,
         "w": 24,
         "x": 0,
         "y": 0
@@ -119,13 +119,14 @@
         "legend": {
           "calcs": [
             "min",
-            "max"
+            "max",
+            "mean"
           ],
-          "displayMode": "list",
+          "displayMode": "table",
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "pluginVersion": "8.2.0-33922pre",
@@ -172,9 +173,9 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "HILOK",
-          "value": "HILOK"
+          "selected": true,
+          "text": [],
+          "value": []
         },
         "datasource": "Telraam API",
         "definition": "$.[*].name",
@@ -216,5 +217,5 @@
   "timezone": "",
   "title": "Lap insights Copy",
   "uid": "LW6gz8Q7z",
-  "version": 3
+  "version": 4
 }
