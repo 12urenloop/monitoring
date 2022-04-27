@@ -47,3 +47,13 @@
     name: ronny07
     lat: 51.04226
     lon: 3.72565
+- targets:
+    - 172.12.50.21
+  labels:
+    service: client1
+    name: client1
+- targets:
+    - 172.12.50.22
+  labels:
+    service: client2
+    name: client2

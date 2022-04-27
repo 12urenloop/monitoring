@@ -42,4 +42,4 @@
     - 172.12.50.21:3000/time
   labels:
     service: manualcount
-    name: manualcount_1
+    name: emanualcount
