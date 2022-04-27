@@ -28,10 +28,18 @@ def fetch_detections(station, count_thousand: int = 1):
         ]
     return detections
 
+def fetch_detections_telraam():
+    batons  = requests.get("http://172.12.50.21:8080/baton").json()
+    batons = {b["id"]: b for b in batons}
+    detections = requests.get("http://172.12.50.21:8080/detection").json()
+    return [{"detection_timestamp": d["timestamp"]/1000, "battery": d["battery"], "mac": batons[d["batonId"]]["mac"]} for d in detections]
+
 
 for station in stations:
     try:
-        detections = fetch_detections(station, 1)
+        print(f"Checking station {station}")
+        detections = fetch_detections(station, 3)
+    # detections = fetch_detections_telraam()
     except:
         print("AAAhhhhh")
         exit(1)
