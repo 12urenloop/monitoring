@@ -1,11 +1,12 @@
 # Monitoring
 
-A monitoring stack that makes use of grafana for visualizations.
+A monitoring stack that makes use of [Grafana](https://grafana.com/) for visualizations.
 
-It also contains prometheus as option to collect metrics and serve them to grafana.
-It should be invested if this is usefull and if we don't want to use an http api instead.
+It also contains [Prometheus](https://prometheus.io/) to collect metrics and serve them to Grafana. Grafana uses both Prometheus en the Telraam HTTP-API to collect and show data. Data transformations are limited in Grafana, because of this the `timesync` folder contains code that collects, transforms and exposes data and metrics in a simple flask webserver to be used by Grafana.
 
 Use it together with the [mityri](https://github.com/12urenloop/mityri) mock tools to instantly observe stats and metrics of a near real setup.
+
+Use it together with the [banshee](https://github.com/12urenloop/banshee) alert watcher to be sure you don't miss the prometheus alerts.
 
 ## Features
 
@@ -17,7 +18,7 @@ Use it together with the [mityri](https://github.com/12urenloop/mityri) mock too
 - WIP: Lap insight page. 
   - See laps over time. 
   - Detect sudden lap duration differences
-  - ...
+- **Postgres overview**: Monitors the postgres behavior using a postgres exporter for prometheus: https://github.com/prometheus-community/postgres_exporter
 
 ## Requirements
 
@@ -26,6 +27,11 @@ Use it together with the [mityri](https://github.com/12urenloop/mityri) mock too
 ## Usage
 
 Configure the configuration of the Stations and Telraam in the `prometheus` folder.
+
+Configure the correct ip adressess in the datasources files in the `grafana` folder.
+
+Configure the correct ip adresses in the config file in the `timesync` folder.
+
 
 ```
 docker-compose up
