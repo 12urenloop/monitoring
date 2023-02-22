@@ -1,4 +1,4 @@
-FROM grafana/grafana:8.5.0
+FROM grafana/grafana:9.3.6
 
 RUN grafana-cli plugins install grafana-piechart-panel
 RUN grafana-cli plugins install simpod-json-datasource
