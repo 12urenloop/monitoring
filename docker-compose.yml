@@ -3,6 +3,8 @@ version: "3.7"
 volumes:
   telraam_grafana_storage: {}
   prometheus_data: {}
+  loki_data: {}
+  promtail_data: {}
 
 services:
   timesync:
@@ -11,7 +13,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
   prometheus:
-    image: prom/prometheus:v2.35.0
+    image: prom/prometheus:v2.42.0
     volumes:
       - ./prometheus/:/etc/prometheus
       - prometheus_data:/prometheus
@@ -47,3 +49,19 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     env_file:
       - ./grafana/config.monitoring
+  loki:
+    image: grafana/loki
+    command: "-config.file /etc/loki/config.yaml"
+    network_mode: host
+    volumes:
+      - ./loki:/etc/loki
+      - loki_data:/loki
+  promtail:
+    image: grafana/promtail
+    network_mode: host
+    command: "-config.file /etc/promtail/config.yaml"
+    volumes:
+      - ./promtail:/etc/promtail
+      - promtail_data:/promtail
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log:ro
