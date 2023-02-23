@@ -1,45 +1,45 @@
 - targets:
-    - 172.12.50.101:8000/time
+    - HOST_AND_IP_RONNY01/time
   labels:
     service: station
     name: ronny01
 - targets:
-    - 172.12.50.102:8000/time
+    - HOST_AND_IP_RONNY02/time
   labels:
     service: station
     name: ronny02
 - targets:
-    - 172.12.50.103:8000/time
+    - HOST_AND_IP_RONNY03/time
   labels:
     service: station
     name: ronny03
 - targets:
-    - 172.12.50.104:8000/time
+    - HOST_AND_IP_RONNY04/time
   labels:
     service: station
     name: ronny04
 - targets:
-    - 172.12.50.105:8000/time
+    - HOST_AND_IP_RONNY05/time
   labels:
     service: station
     name: ronny05
 - targets:
-    - 172.12.50.106:8000/time
+    - HOST_AND_IP_RONNY06/time
   labels:
     service: station
     name: ronny06
 - targets:
-    - 172.12.50.107:8000/time
+    - HOST_AND_IP_RONNY07/time
   labels:
     service: station
     name: ronny07
 - targets:
-    - 172.12.50.21:8080/time
+    - HOST_AND_IP_TELRAAM/time
   labels:
     service: telraam
     name: telraam_1
 - targets:
-    - 172.12.50.21:3000/time
+    - HOST_AND_IP_MANUALCOUNT/time
   labels:
     service: manualcount
     name: emanualcount
