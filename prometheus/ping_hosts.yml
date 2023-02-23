@@ -1,59 +1,59 @@
 - targets:
-    - HOST_RONNY01
+    - IP_RONNY01
   labels:
     service: station
     name: ronny01
     lat: 51.04199
     lon: 3.72566
 - targets:
-    - HOST_RONNY02
+    - IP_RONNY02
   labels:
     service: station
     name: ronny02
     lat: 51.04198
     lon: 3.72610
 - targets:
-    - HOST_RONNY03
+    - IP_RONNY03
   labels:
     service: station
     name: ronny03
     lat: 51.04238
     lon: 3.72633
 - targets:
-    - HOST_RONNY04
+    - IP_RONNY04
   labels:
     service: station
     name: ronny04
     lat: 51.04294
     lon: 3.72636
 - targets:
-    - HOST_RONNY05
+    - IP_RONNY05
   labels:
     service: station
     name: ronny05
     lat: 51.04319
     lon: 3.72580
 - targets:
-    - HOST_RONNY06
+    - IP_RONNY06
   labels:
     service: station
     name: ronny06
     lat: 51.04281
     lon: 3.72565
 - targets:
-    - HOST_RONNY07
+    - IP_RONNY07
   labels:
     service: station
     name: ronny07
     lat: 51.04226
     lon: 3.72565
 - targets:
-    - HOST_CLIENT1
+    - IP_CLIENT1
   labels:
     service: client1
     name: client1
 - targets:
-    - HOST_CLIENT2
+    - IP_CLIENT2
   labels:
     service: client2
     name: client2
