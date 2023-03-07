@@ -24,14 +24,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1651075961184,
+  "id": 11,
+  "iteration": 1678222908750,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
-        "uid": "hpBfenUnk"
+        "uid": "P3B066C7CF800AEFC"
       },
       "fieldConfig": {
         "defaults": {
@@ -75,8 +76,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -86,32 +86,7 @@
           },
           "unit": "s"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "16 lap_time"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 14,
@@ -135,15 +110,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
-          "cacheDurationSeconds": 30,
+          "cacheDurationSeconds": 0,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "hpBfenUnk"
+            "uid": "P3B066C7CF800AEFC"
           },
-          "experimentalGroupByField": "team_id",
+          "experimentalGroupByField": "team_name",
           "fields": [
             {
               "jsonPath": "$.[*].timestamp",
@@ -152,10 +127,9 @@
               "type": "time"
             },
             {
-              "jsonPath": "$.[*].team_id",
+              "jsonPath": "$.[*].team_name",
               "language": "jsonpath",
-              "name": "",
-              "type": "string"
+              "name": ""
             },
             {
               "jsonPath": "$.[*].lap_time",
@@ -167,7 +141,7 @@
           "method": "GET",
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/team-lap-times"
+          "urlPath": "/monitoring/team-lap-times/$Lapper"
         }
       ],
       "title": "Lap time over time",
@@ -183,49 +157,45 @@
       {
         "current": {
           "selected": true,
-          "text": [],
-          "value": []
+          "text": "5",
+          "value": "5"
         },
-        "datasource": {
-          "type": "marcusolsson-json-datasource",
-          "uid": "ItBfe78nk"
-        },
-        "definition": "$.[*].name",
         "hide": 0,
         "includeAll": false,
-        "multi": true,
-        "name": "Teams",
-        "options": [],
-        "query": {
-          "cacheDurationSeconds": 300,
-          "fields": [
-            {
-              "jsonPath": "$.[*].name",
-              "language": "jsonpath",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "method": "GET",
-          "queryParams": "",
-          "urlPath": "/team"
-        },
-        "refresh": 1,
-        "regex": "",
+        "multi": false,
+        "name": "Lapper",
+        "options": [
+          {
+            "selected": false,
+            "text": "2",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "4",
+            "value": "4"
+          },
+          {
+            "selected": true,
+            "text": "5",
+            "value": "5"
+          }
+        ],
+        "query": "2,4,5",
+        "queryValue": "",
         "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "2022-04-27T07:00:00.000Z",
-    "to": "2022-04-27T19:00:00.000Z"
+    "from": "2023-03-07T20:01:55.802Z",
+    "to": "2023-03-07T20:55:06.209Z"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Lap insights Copy",
-  "uid": "LW6gz8Q7z",
-  "version": 6,
+  "title": "Lap times",
+  "uid": "t3OIEkaVk",
+  "version": 1,
   "weekStart": ""
 }
