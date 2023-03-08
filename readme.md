@@ -26,20 +26,18 @@ Use it together with the [banshee](https://github.com/12urenloop/banshee) alert 
 
 ## Usage
 
-Configure the configuration of the Stations and Telraam in the `prometheus` folder.
-
-Configure the correct ip adressess in the datasources files in the `grafana` folder.
-
-Configure the correct ip adresses in the config file in the `timesync` folder.
-
-
+Start the server with
 ```
-docker-compose up
+$ ./start.sh <env-file>
 ```
+
+In an environment file, you configure IPs and ports of the Stations, Telraam and ManualCount.
+Examples are `hosts_prod.env` and `host_simsalabim_kelder.env`.
+
+After starting, you can change IPs in the environment file. Stop the monitoring, run `restore.sh` and then `start.sh` again.
 
 Go to [localhost:3000](http://localhost:3000) to see the grafana dashboard.
-The preset credentials are username `admin` and password `foobar`.
-
+The preset credentials username is `admin`, password is in the environment file.
 
 ## Resources
 
