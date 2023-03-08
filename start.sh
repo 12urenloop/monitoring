@@ -44,4 +44,4 @@ sed -i "s/IP_AND_PORT_MANUALCOUNT/${MANUALCOUNT_IP}:${MANUALCOUNT_PORT}/" timesy
 sed -i "s/IP_AND_PORT_TELRAAM/${TELRAAM_IP}:${TELRAAM_PORT}/" timesync/config.py
 
 # Starting monitoring
-docker-compose up
+docker-compose up --build

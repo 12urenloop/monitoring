@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -19,13 +22,16 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -86,9 +92,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "probe_success{job=\"blackbox\", service=\"telraam\"}",
           "format": "time_series",
@@ -97,6 +107,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "probe_success{job=\"blackbox\", service=\"manualcount\"}",
           "hide": false,
@@ -109,7 +123,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Timesync API",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "PD030B881CE30D44B"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -157,7 +174,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -192,7 +209,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Timesync API",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P3B066C7CF800AEFC"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -246,10 +266,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P3B066C7CF800AEFC"
+          },
           "fields": [
             {
               "jsonPath": "$.[*].name",
@@ -266,12 +290,12 @@
           "params": [
             [
               "filter_assigned",
-              "1"
+              "true"
             ]
           ],
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/batons"
+          "urlPath": "/monitoring/batons"
         }
       ],
       "title": "Battery percentage",
@@ -292,7 +316,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -364,7 +391,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -402,11 +429,21 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -435,6 +472,7 @@
       "options": {
         "basemap": {
           "config": {},
+          "name": "Layer 0",
           "type": "xyz"
         },
         "controls": {
@@ -447,22 +485,41 @@
         "layers": [
           {
             "config": {
-              "color": {
-                "field": "Value #A",
-                "fixed": "dark-green"
-              },
-              "fillOpacity": 1,
-              "shape": "square",
               "showLegend": true,
-              "size": {
-                "fixed": 10,
-                "max": 15,
-                "min": 2
+              "style": {
+                "color": {
+                  "field": "Value #A",
+                  "fixed": "dark-green"
+                },
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 10,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/square.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
               }
             },
             "location": {
               "mode": "coords"
             },
+            "name": "Layer 1",
             "type": "markers"
           }
         ],
@@ -473,7 +530,7 @@
           "zoom": 17.68
         }
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -488,7 +545,10 @@
       "type": "geomap"
     },
     {
-      "datasource": "Timesync API",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P3B066C7CF800AEFC"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -537,10 +597,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P3B066C7CF800AEFC"
+          },
           "fields": [
             {
               "jsonPath": "$.[*].time_since_seen",
@@ -556,12 +620,12 @@
           "params": [
             [
               "filter_assigned",
-              "1"
+              "true"
             ]
           ],
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/batons"
+          "urlPath": "/monitoring/batons"
         }
       ],
       "title": "Baton last seen",
@@ -582,7 +646,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Timesync API",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P3B066C7CF800AEFC"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -637,10 +704,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P3B066C7CF800AEFC"
+          },
           "fields": [
             {
               "jsonPath": "$.[*].rebooted",
@@ -656,12 +727,12 @@
           "params": [
             [
               "filter_assigned",
-              "1"
+              "true"
             ]
           ],
           "queryParams": "",
           "refId": "A",
-          "urlPath": "/batons"
+          "urlPath": "/monitoring/batons"
         }
       ],
       "title": "Baton restarted",
@@ -682,7 +753,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -754,7 +828,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -792,7 +866,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -864,7 +941,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -901,7 +978,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -909,7 +989,8 @@
           },
           "custom": {
             "fillOpacity": 70,
-            "lineWidth": 0
+            "lineWidth": 0,
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -946,7 +1027,8 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -987,7 +1069,10 @@
       "type": "state-timeline"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -995,7 +1080,8 @@
           },
           "custom": {
             "fillOpacity": 70,
-            "lineWidth": 0
+            "lineWidth": 0,
+            "spanNulls": false
           },
           "mappings": [
             {
@@ -1047,7 +1133,8 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.0-33922pre",
@@ -1088,7 +1175,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 31,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1102,5 +1189,6 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 8
+  "version": 1,
+  "weekStart": ""
 }
