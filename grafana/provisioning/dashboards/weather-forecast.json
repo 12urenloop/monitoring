@@ -1,0 +1,89 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 11,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 23,
+        "w": 11,
+        "x": 1,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapRainWebmercatorBE?height=800&width=800&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
+        "mode": "html"
+      },
+      "pluginVersion": "8.5.0",
+      "title": "Rain",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 23,
+        "w": 11,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapSnowWebmercatorBE?height=800&width=800&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
+        "mode": "html"
+      },
+      "pluginVersion": "8.5.0",
+      "title": "Snow",
+      "type": "text"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Weather forecast",
+  "uid": "Zm3YvW-4z",
+  "version": 1,
+  "weekStart": ""
+}

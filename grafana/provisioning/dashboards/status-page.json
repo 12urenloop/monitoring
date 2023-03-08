@@ -24,9 +24,123 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Offline"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Online"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "Unreachable"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 2,
+        "x": 0,
+        "y": 0
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox-ping\", service=\"client1\"}",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Client1",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Metric"
+              }
+            ]
+          }
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "many"
+          }
+        }
+      ],
+      "type": "stat"
+    },
     {
       "datasource": {
         "type": "prometheus",
@@ -73,7 +187,7 @@
       "gridPos": {
         "h": 8,
         "w": 8,
-        "x": 0,
+        "x": 2,
         "y": 0
       },
       "id": 9,
@@ -154,8 +268,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 4,
-        "x": 8,
+        "w": 6,
+        "x": 10,
         "y": 0
       },
       "id": 17,
@@ -247,7 +361,7 @@
       "gridPos": {
         "h": 8,
         "w": 8,
-        "x": 12,
+        "x": 16,
         "y": 0
       },
       "id": 20,
@@ -320,229 +434,20 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "red",
-                  "index": 1,
-                  "text": "Offline"
-                },
-                "1": {
-                  "color": "green",
-                  "index": 0,
-                  "text": "Online"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "dark-red",
-                  "index": 2,
-                  "text": "Unreachable"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 8,
-        "w": 4,
-        "x": 20,
-        "y": 0
-      },
-      "id": 24,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "probe_success{job=\"blackbox-ping\", service=\"client1\"}",
-          "format": "time_series",
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Client1",
-      "transformations": [
-        {
-          "id": "seriesToRows",
-          "options": {}
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "field": "Metric"
-              }
-            ]
-          }
-        },
-        {
-          "id": "prepareTimeSeries",
-          "options": {
-            "format": "many"
-          }
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 18,
         "w": 6,
         "x": 0,
         "y": 8
       },
-      "id": 15,
+      "id": 26,
       "options": {
-        "basemap": {
-          "config": {},
-          "name": "Layer 0",
-          "type": "xyz"
-        },
-        "controls": {
-          "mouseWheelZoom": true,
-          "showAttribution": true,
-          "showDebug": false,
-          "showScale": false,
-          "showZoom": true
-        },
-        "layers": [
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "field": "Value #A",
-                  "fixed": "dark-green"
-                },
-                "opacity": 1,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 10,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/square.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "location": {
-              "mode": "coords"
-            },
-            "name": "Layer 1",
-            "type": "markers"
-          }
-        ],
-        "view": {
-          "id": "coords",
-          "lat": 51.042569,
-          "lon": 3.725806,
-          "zoom": 17.68
-        }
+        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapSnowWebmercatorBE?height=400&width=400&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
+        "mode": "html"
       },
       "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "probe_success{job=\"blackbox-ping\", service=\"station\"}",
-          "format": "table",
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Map",
-      "type": "geomap"
+      "title": "Snow",
+      "type": "text"
     },
     {
       "datasource": {
@@ -571,14 +476,153 @@
                 "value": 30
               }
             ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "stationId"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "2": {
+                        "index": 0,
+                        "text": "Ronny01"
+                      },
+                      "4": {
+                        "index": 1,
+                        "text": "Ronny02"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Ronny03"
+                      },
+                      "6": {
+                        "index": 4,
+                        "text": "Ronny04"
+                      },
+                      "7": {
+                        "index": 6,
+                        "text": "Ronny05"
+                      },
+                      "8": {
+                        "index": 2,
+                        "text": "Ronny06"
+                      },
+                      "9": {
+                        "index": 3,
+                        "text": "Ronny07"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
           }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 4,
+        "x": 6,
+        "y": 8
+      },
+      "id": 29,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^time$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P3B066C7CF800AEFC"
+          },
+          "fields": [
+            {
+              "jsonPath": "$keys($)",
+              "language": "jsonata",
+              "name": "stationId"
+            },
+            {
+              "jsonPath": "$.*",
+              "language": "jsonata",
+              "name": "time",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "filter_assigned",
+              "true"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/monitoring/stations-latest-detection-time"
+        }
+      ],
+      "title": "Station latest detection",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P3B066C7CF800AEFC"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
+                "color": "red",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "s"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 14,
         "w": 3,
-        "x": 6,
+        "x": 10,
         "y": 8
       },
       "id": 19,
@@ -660,11 +704,13 @@
               "options": {
                 "false": {
                   "color": "green",
-                  "index": 1
+                  "index": 1,
+                  "text": "No"
                 },
                 "true": {
                   "color": "red",
-                  "index": 0
+                  "index": 0,
+                  "text": "YES"
                 }
               },
               "type": "value"
@@ -683,9 +729,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 14,
         "w": 3,
-        "x": 9,
+        "x": 13,
         "y": 8
       },
       "id": 21,
@@ -808,8 +854,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 8
       },
       "id": 4,
@@ -921,8 +967,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 12
       },
       "id": 6,
@@ -982,6 +1028,26 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "id": 28,
+      "options": {
+        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapRainWebmercatorBE?height=400&width=400&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
+        "mode": "html"
+      },
+      "pluginVersion": "8.5.0",
+      "title": "Rain",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1011,9 +1077,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 12,
+        "h": 7,
+        "w": 4,
+        "x": 16,
         "y": 16
       },
       "id": 2,
@@ -1117,9 +1183,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 18,
+        "h": 7,
+        "w": 4,
+        "x": 20,
         "y": 16
       },
       "id": 7,
@@ -1172,6 +1238,122 @@
         }
       ],
       "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 6,
+        "x": 9,
+        "y": 22
+      },
+      "id": 15,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "xyz"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "Value #A",
+                  "fixed": "dark-green"
+                },
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 10,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/square.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "coords"
+            },
+            "name": "Layer 1",
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "coords",
+          "lat": 51.042569,
+          "lon": 3.725806,
+          "zoom": 17.68
+        }
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox-ping\", service=\"station\"}",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Map",
+      "type": "geomap"
     }
   ],
   "refresh": "5s",
@@ -1189,6 +1371,6 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

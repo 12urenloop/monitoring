@@ -15,6 +15,7 @@ sed -i "s/IP_AND_PORT_RONNY05/${RONNY05_IP}:${RONNY05_PORT}/" prometheus/http_ho
 sed -i "s/IP_AND_PORT_RONNY06/${RONNY06_IP}:${RONNY06_PORT}/" prometheus/http_hosts.yml
 sed -i "s/IP_AND_PORT_RONNY07/${RONNY07_IP}:${RONNY07_PORT}/" prometheus/http_hosts.yml
 sed -i "s/IP_AND_PORT_TELRAAM/${TELRAAM_IP}:${TELRAAM_PORT}/" prometheus/http_hosts.yml
+sed -i "s/IP_AND_PORT_MANUALCOUNT/${MANUALCOUNT_IP}:${MANUALCOUNT_PORT}/" prometheus/http_hosts.yml
 
 sed -i "s/IP_RONNY01/${RONNY01_IP}/" prometheus/ping_hosts.yml
 sed -i "s/IP_RONNY02/${RONNY02_IP}/" prometheus/ping_hosts.yml

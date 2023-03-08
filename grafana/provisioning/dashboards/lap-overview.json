@@ -25,81 +25,10 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 13,
-        "x": 0,
-        "y": 0
-      },
-      "id": 2,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 300,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "P3B066C7CF800AEFC"
-          },
-          "fields": [
-            {
-              "jsonPath": ""
-            }
-          ],
-          "method": "GET",
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/monitoring/team-lap-counts"
-        }
-      ],
-      "title": "Lap graph",
-      "type": "table"
-    },
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
@@ -132,19 +61,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Team name"
-            },
-            "properties": [
-              {
-                "id": "custom.displayMode",
-                "value": "auto"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Difference"
+              "options": "Diff HMM Rob"
             },
             "properties": [
               {
@@ -159,14 +76,14 @@
               },
               {
                 "id": "max",
-                "value": 5
+                "value": 3
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Max"
+              "options": "MaxHR"
             },
             "properties": [
               {
@@ -178,7 +95,99 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Min"
+              "options": "MinHR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diff Man HMM"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "gradient-gauge"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-GrYlRd"
+                }
+              },
+              {
+                "id": "max",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MaxMH"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MinMH"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diff Man Rob"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "gradient-gauge"
+              },
+              {
+                "id": "max",
+                "value": 3
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-GrYlRd"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MaxMR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MinMR"
             },
             "properties": [
               {
@@ -190,9 +199,9 @@
         ]
       },
       "gridPos": {
-        "h": 23,
-        "w": 11,
-        "x": 13,
+        "h": 14,
+        "w": 24,
+        "x": 0,
         "y": 0
       },
       "id": 4,
@@ -208,7 +217,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "RobustLapper"
+            "displayName": "ManualCount"
           }
         ]
       },
@@ -253,6 +262,7 @@
         {
           "id": "calculateField",
           "options": {
+            "alias": "MaxHR",
             "mode": "reduceRow",
             "reduce": {
               "include": [
@@ -266,6 +276,7 @@
         {
           "id": "calculateField",
           "options": {
+            "alias": "MinHR",
             "binary": {
               "left": "Difference percent",
               "reducer": "sum"
@@ -283,12 +294,12 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Difference",
+            "alias": "Diff HMM Rob",
             "binary": {
-              "left": "Max",
+              "left": "MaxHR",
               "operator": "-",
               "reducer": "sum",
-              "right": "Min"
+              "right": "MinHR"
             },
             "mode": "binary",
             "reduce": {
@@ -299,145 +310,109 @@
               "reducer": "diff"
             }
           }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MaxMH",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "HMM"
+              ],
+              "reducer": "max"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MinMH",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "HMM"
+              ],
+              "reducer": "min"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Diff Man HMM",
+            "binary": {
+              "left": "MaxMH",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "MinMH"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "MaxMH",
+                "MinMH"
+              ],
+              "reducer": "diff"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MaxMR",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "RobustLapper"
+              ],
+              "reducer": "max"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MinMR",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "RobustLapper"
+              ],
+              "reducer": "min"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Diff Man Rob",
+            "binary": {
+              "left": "MaxMR",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "MinMR"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "MaxMR",
+                "MinMR"
+              ],
+              "reducer": "diff"
+            }
+          }
         }
       ],
       "type": "table"
-    },
-    {
-      "columns": [],
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 7,
-        "w": 7,
-        "x": 0,
-        "y": 12
-      },
-      "id": 6,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "$$hashKey": "object:15292",
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "$$hashKey": "object:16403",
-          "alias": "",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "instance",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:16447",
-          "alias": "",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "job",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:16474",
-          "alias": "Beacon ID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 0,
-          "mappingType": 1,
-          "pattern": "beacon_id",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:16529",
-          "alias": "Tijd sinds laatste detectie (s)",
-          "align": "auto",
-          "colorMode": "cell",
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Value",
-          "preserveFormat": false,
-          "sanitize": false,
-          "thresholds": [
-            "50",
-            "60"
-          ],
-          "type": "string",
-          "unit": "short",
-          "valueMaps": []
-        },
-        {
-          "$$hashKey": "object:15293",
-          "alias": "",
-          "align": "right",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "time() - telraam_last_beacon_detection/1000",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Laatste detecties voor beacons",
-      "transform": "table",
-      "type": "table-old"
     }
   ],
-  "refresh": " 5s",
+  "refresh": "5s",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [],
@@ -465,6 +440,6 @@
   "timezone": "",
   "title": "Laps overview",
   "uid": "y9DWmy_Wk",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
