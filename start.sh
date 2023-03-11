@@ -21,7 +21,7 @@ envsubst < prometheus/ping_hosts.template.yml \
 envsubst < prometheus/prometheus.template.yml \
          > prometheus/prometheus.yml
 
-envsubst < grafana/provisioning/datasources/datasource.template.yml \
+envsubst < grafana/datasource.template.yml \
          > grafana/provisioning/datasources/datasource.yml
 envsubst < grafana/config.template.monitoring \
          > grafana/config.monitoring
