@@ -451,7 +451,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "5FexBn-Vz"
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
@@ -555,7 +555,7 @@
           "cacheDurationSeconds": 300,
           "datasource": {
             "type": "postgres",
-            "uid": "5FexBn-Vz"
+            "uid": "P153BFFACB2904795"
           },
           "fields": [
             {
@@ -600,7 +600,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "5FexBn-Vz"
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
@@ -657,7 +657,7 @@
           "cacheDurationSeconds": 300,
           "datasource": {
             "type": "postgres",
-            "uid": "5FexBn-Vz"
+            "uid": "P153BFFACB2904795"
           },
           "fields": [
             {
