@@ -62,11 +62,11 @@ datasources:
     url: 'http://localhost:3030'
   - name: 'Telraan Postgres Replica'
     type: postgres
-    url: localhost:5432
-    user: postgres # TODO Use specific user for database
+    url: $CLIENT2_IP:5432
+    user: monitoring_user
+    database: 'telraam'
     secureJsonData:
-      password: 'postgres'
+      password: '$MONITORING_DB_PASSWORD'
     jsonData:
-      database: 'telraam_6ul'
       sslmode: 'disable'
       postgresVersion: 1500
