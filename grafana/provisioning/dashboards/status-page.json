@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -451,8 +450,8 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
+        "type": "postgres",
+        "uid": "5FexBn-Vz"
       },
       "fieldConfig": {
         "defaults": {
@@ -544,43 +543,54 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^time$/",
+          "fields": "/^extract$/",
           "values": true
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "value_and_name"
       },
       "pluginVersion": "8.5.0",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "P3B066C7CF800AEFC"
+            "type": "postgres",
+            "uid": "5FexBn-Vz"
           },
           "fields": [
             {
-              "jsonPath": "$keys($)",
-              "language": "jsonata",
-              "name": "stationId"
-            },
-            {
-              "jsonPath": "$.*",
-              "language": "jsonata",
-              "name": "time",
-              "type": "number"
+              "jsonPath": ""
             }
           ],
+          "format": "table",
+          "group": [],
           "method": "GET",
-          "params": [
+          "metricColumn": "none",
+          "queryParams": "",
+          "rawQuery": true,
+          "rawSql": "select EXTRACT(EPOCH FROM (now() - max(timestamp))), s.name\nfrom detection\n         join station s on detection.station_id = s.id\ngroup by detection.station_id, s.id, s.name;",
+          "refId": "A",
+          "select": [
             [
-              "filter_assigned",
-              "true"
+              {
+                "params": [
+                  "battery"
+                ],
+                "type": "column"
+              }
             ]
           ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/monitoring/stations-latest-detection-time"
+          "table": "detection",
+          "timeColumn": "\"timestamp\"",
+          "timeColumnType": "timestamp",
+          "urlPath": "",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "title": "Station latest detection",
@@ -589,8 +599,8 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
+        "type": "postgres",
+        "uid": "5FexBn-Vz"
       },
       "fieldConfig": {
         "defaults": {
@@ -633,43 +643,56 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "allValues"
           ],
-          "fields": "/^time_since_seen$/",
+          "fields": "/^extract$/",
           "values": true
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "value_and_name"
       },
       "pluginVersion": "8.5.0",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "P3B066C7CF800AEFC"
+            "type": "postgres",
+            "uid": "5FexBn-Vz"
           },
           "fields": [
             {
-              "jsonPath": "$.[*].time_since_seen",
-              "type": "number"
-            },
-            {
-              "jsonPath": "$.[*].name",
-              "language": "jsonpath",
-              "name": ""
+              "jsonPath": ""
             }
           ],
+          "format": "table",
+          "group": [],
           "method": "GET",
-          "params": [
+          "metricColumn": "none",
+          "queryParams": "",
+          "rawQuery": true,
+          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))), b.name || ' (' || t.name || ')' as name\nfrom detection\n         join baton b on b.id = detection.baton_id\n         join team t on b.id = t.baton_id\ngroup by detection.baton_id, b.name, t.name",
+          "refId": "A",
+          "select": [
             [
-              "filter_assigned",
-              "true"
+              {
+                "params": [
+                  "battery"
+                ],
+                "type": "column"
+              }
             ]
           ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/monitoring/batons"
+          "table": "detection",
+          "timeColumn": "\"timestamp\"",
+          "timeColumnType": "timestamp",
+          "urlPath": "",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "title": "Baton last seen",
@@ -1371,6 +1394,6 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
