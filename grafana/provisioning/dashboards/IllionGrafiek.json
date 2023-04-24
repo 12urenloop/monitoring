@@ -32,7 +32,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "5FexBn-Vz"
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
@@ -111,7 +111,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "5FexBn-Vz"
+            "uid": "P153BFFACB2904795"
           },
           "format": "time_series",
           "group": [],
@@ -162,7 +162,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "5FexBn-Vz"
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
@@ -266,7 +266,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "5FexBn-Vz"
+            "uid": "P153BFFACB2904795"
           },
           "format": "time_series",
           "group": [],
@@ -333,7 +333,7 @@
         },
         "datasource": {
           "type": "postgres",
-          "uid": "5FexBn-Vz"
+          "uid": "P153BFFACB2904795"
         },
         "definition": "select id from baton",
         "hide": 0,

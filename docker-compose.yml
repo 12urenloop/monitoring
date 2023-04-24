@@ -5,11 +5,11 @@ volumes:
   prometheus_data: {}
 
 services:
-  timesync:
-    build:
-      context: timesync/
-      dockerfile: Dockerfile
-    network_mode: host
+  #timesync:
+  #  build:
+  #    context: timesync/
+  #    dockerfile: Dockerfile
+  #  network_mode: host
   prometheus:
     image: prom/prometheus:v2.35.0
     volumes:

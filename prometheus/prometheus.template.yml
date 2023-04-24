@@ -16,7 +16,7 @@ scrape_configs:
   - job_name: postgres.telraam_db
     metrics_path: /metrics
     static_configs:
-      - targets: [ "IP_TELRAAM:9187" ]
+      - targets: [ "$TELRAAM_IP:9187" ]
 
   - job_name: blackbox
     metrics_path: /probe
@@ -52,15 +52,15 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: [
-          'IP_RONNY01:9100',
-          'IP_RONNY02:9100',
-          'IP_RONNY03:9100',
-          'IP_RONNY04:9100',
-          'IP_RONNY05:9100',
-          'IP_RONNY06:9100',
-          'IP_RONNY07:9100',
-          'IP_CLIENT1:9100',
-          'IP_CLIENT2:9100'
+          '$RONNY01_IP:9100',
+          '$RONNY02_IP:9100',
+          '$RONNY03_IP:9100',
+          '$RONNY04_IP:9100',
+          '$RONNY05_IP:9100',
+          '$RONNY06_IP:9100',
+          '$RONNY07_IP:9100',
+          '$CLIENT1_IP:9100',
+          '$CLIENT2_IP:9100'
         ]
 
 rule_files:

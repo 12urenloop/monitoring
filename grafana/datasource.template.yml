@@ -6,12 +6,8 @@ apiVersion: 1
 #  - name: Prometheus
 #    orgId: 1
 
-# list of datasources to insert/update depending
-# whats available in the database
 datasources:
-  # <string, required> name of the datasource. Required
   - name: Prometheus
-    # <string, required> datasource type. Required
     type: prometheus
     # <string, required> access mode. direct or proxy. Required
     access: proxy
@@ -50,21 +46,27 @@ datasources:
     editable: true
   - name: 'ManualCount API'
     type: 'marcusolsson-json-datasource'
-    url: 'http://IP_AND_PORT_MANUALCOUNT'
+    url: '$IP_PORT_MANUALCOUNT'
   - name: 'Telraam API'
     type: 'marcusolsson-json-datasource'
-    url: 'http://IP_AND_PORT_TELRAAM'
+    url: '$IP_PORT_TELRAAM'
     # url: 'http://10.1.0.200:8080'
   - name: 'Telraam Admin API'
     type: 'marcusolsson-json-datasource'
-    url: 'http://localhost:8081'
+    url: '$IP_TELRAAM:8081'
   - name: 'Data API'
     type: 'marcusolsson-json-datasource'
     url: 'http://localhost:8000'
   - name: 'Timesync API'
     type: 'marcusolsson-json-datasource'
     url: 'http://localhost:3030'
-
-  - name: 'Infinity'
-    type: 'yesoreyeram-infinity-datasource'
-    url: 'http://localhost:8000'
+  - name: 'Telraan Postgres Replica'
+    type: postgres
+    url: localhost:5432
+    user: postgres # TODO Use specific user for database
+    secureJsonData:
+      password: 'postgres'
+    jsonData:
+      database: 'telraam_6ul'
+      sslmode: 'disable'
+      postgresVersion: 1500
