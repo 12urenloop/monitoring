@@ -47,11 +47,11 @@ def get_server_sync(name, url):
 
 def serialize_timemeasurement(name, measurement):
     if measurement is None:
-        r = {'name': name, 'success': False, 'offset': 0, 'accuracy': 0}
+        r = {'name': name, 'success': False, 'offset': None, 'accuracy': None, 'abs_offset': None, 'abs_accuracy': None}
     else:
         r = {'name': name, 'success': True, 'offset': measurement.offset(), 'accuracy': measurement.accuracy()}
-    r['abs_offset'] = abs(r['offset'])
-    r['abs_accuracy'] = abs(r['accuracy'])
+        r['abs_offset'] = abs(r['offset'])
+        r['abs_accuracy'] = abs(r['accuracy'])
     return r
 
 server_status = {}

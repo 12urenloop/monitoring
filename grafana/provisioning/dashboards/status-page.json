@@ -103,7 +103,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "exemplar": true,
@@ -205,7 +205,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -245,7 +245,18 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "dark-red",
+                  "index": 0
+                }
+              },
+              "type": "special"
+            }
+          ],
           "max": 5,
           "min": 0,
           "thresholds": {
@@ -263,7 +274,22 @@
           },
           "unit": "s"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlYlRd"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -287,10 +313,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "PD030B881CE30D44B"
+          },
           "fields": [
             {
               "jsonPath": "$.[*].name",
@@ -323,15 +353,26 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "orange",
+                  "index": 0
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -341,15 +382,11 @@
               },
               {
                 "color": "orange",
-                "value": 30
-              },
-              {
-                "color": "#EAB839",
-                "value": 50
+                "value": 70
               },
               {
                 "color": "green",
-                "value": 60
+                "value": 80
               }
             ]
           },
@@ -364,6 +401,7 @@
         "y": 0
       },
       "id": 20,
+      "interval": "10s",
       "options": {
         "colorMode": "background",
         "graphMode": "area",
@@ -379,36 +417,41 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "P3B066C7CF800AEFC"
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
           },
-          "fields": [
-            {
-              "jsonPath": "$.[*].name",
-              "type": "string"
-            },
-            {
-              "jsonPath": "$.[*].battery",
-              "language": "jsonpath",
-              "name": "",
-              "type": "number"
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "filter_assigned",
-              "true"
-            ]
-          ],
-          "queryParams": "",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT DISTINCT ON (baton.name) name, detection.battery as battery, detection.timestamp as timestamp, detection.id\nFROM detection right join baton ON baton.id = detection.baton_id\nORDER BY name, timestamp DESC, battery ASC",
           "refId": "A",
-          "urlPath": "/monitoring/batons"
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "battery",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "detection"
         }
       ],
       "title": "Battery percentage",
@@ -433,20 +476,127 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 8,
+        "h": 14,
         "w": 6,
         "x": 0,
         "y": 8
       },
-      "id": 26,
+      "id": 15,
       "options": {
-        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapSnowWebmercatorBE?height=400&width=400&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
-        "mode": "html"
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "xyz"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "Value #A",
+                  "fixed": "dark-green"
+                },
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 10,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/square.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "coords"
+            },
+            "name": "Layer 1",
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "coords",
+          "lat": 51.042569,
+          "lon": 3.725806,
+          "zoom": 17.68
+        }
       },
-      "pluginVersion": "8.5.0",
-      "title": "Snow",
-      "type": "text"
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox-ping\", service=\"station\"}",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Map",
+      "type": "geomap"
     },
     {
       "datasource": {
@@ -482,7 +632,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "stationId"
+              "options": "since"
             },
             "properties": [
               {
@@ -490,36 +640,13 @@
                 "value": [
                   {
                     "options": {
-                      "2": {
-                        "index": 0,
-                        "text": "Ronny01"
-                      },
-                      "4": {
-                        "index": 1,
-                        "text": "Ronny02"
-                      },
-                      "5": {
-                        "index": 5,
-                        "text": "Ronny03"
-                      },
-                      "6": {
-                        "index": 4,
-                        "text": "Ronny04"
-                      },
-                      "7": {
-                        "index": 6,
-                        "text": "Ronny05"
-                      },
-                      "8": {
-                        "index": 2,
-                        "text": "Ronny06"
-                      },
-                      "9": {
-                        "index": 3,
-                        "text": "Ronny07"
+                      "match": "null",
+                      "result": {
+                        "color": "orange",
+                        "index": 0
                       }
                     },
-                    "type": "value"
+                    "type": "special"
                   }
                 ]
               }
@@ -529,110 +656,8 @@
       },
       "gridPos": {
         "h": 14,
-        "w": 4,
+        "w": 7,
         "x": 6,
-        "y": 8
-      },
-      "id": 29,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^extract$/",
-          "values": true
-        },
-        "text": {},
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 300,
-          "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
-          },
-          "fields": [
-            {
-              "jsonPath": ""
-            }
-          ],
-          "format": "table",
-          "group": [],
-          "method": "GET",
-          "metricColumn": "none",
-          "queryParams": "",
-          "rawQuery": true,
-          "rawSql": "select EXTRACT(EPOCH FROM (now() - max(timestamp))), s.name\nfrom detection\n         join station s on detection.station_id = s.id\ngroup by detection.station_id, s.id, s.name;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "battery"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "detection",
-          "timeColumn": "\"timestamp\"",
-          "timeColumnType": "timestamp",
-          "urlPath": "",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Station latest detection",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 20
-              },
-              {
-                "color": "red",
-                "value": 30
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 3,
-        "x": 10,
         "y": 8
       },
       "id": 19,
@@ -645,13 +670,15 @@
           "calcs": [
             "allValues"
           ],
-          "fields": "/^extract$/",
+          "fields": "/^since$/",
           "values": true
         },
-        "text": {},
+        "text": {
+          "titleSize": 15
+        },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -659,6 +686,7 @@
             "type": "postgres",
             "uid": "P153BFFACB2904795"
           },
+          "editorMode": "code",
           "fields": [
             {
               "jsonPath": ""
@@ -670,7 +698,7 @@
           "metricColumn": "none",
           "queryParams": "",
           "rawQuery": true,
-          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))), b.name || ' (' || t.name || ')' as name\nfrom detection\n         join baton b on b.id = detection.baton_id\n         join team t on b.id = t.baton_id\ngroup by detection.baton_id, b.name, t.name",
+          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))) as since, b.name || ' (' || t.name || ')' as name\nfrom detection\n         right join baton b on b.id = detection.baton_id\n         right join team t on b.id = t.baton_id\ngroup by detection.baton_id, b.name, t.name",
           "refId": "A",
           "select": [
             [
@@ -682,6 +710,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "detection",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
@@ -773,7 +818,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -819,6 +864,175 @@
           }
         }
       ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "stationId"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "2": {
+                        "index": 0,
+                        "text": "Ronny01"
+                      },
+                      "4": {
+                        "index": 1,
+                        "text": "Ronny02"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Ronny03"
+                      },
+                      "6": {
+                        "index": 4,
+                        "text": "Ronny04"
+                      },
+                      "7": {
+                        "index": 6,
+                        "text": "Ronny05"
+                      },
+                      "8": {
+                        "index": 2,
+                        "text": "Ronny06"
+                      },
+                      "9": {
+                        "index": 3,
+                        "text": "Ronny07"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
+      "id": 29,
+      "interval": "2s",
+      "maxDataPoints": 1000,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^extract$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "fields": [
+            {
+              "jsonPath": ""
+            }
+          ],
+          "format": "table",
+          "group": [],
+          "method": "GET",
+          "metricColumn": "none",
+          "queryParams": "",
+          "rawQuery": true,
+          "rawSql": "select EXTRACT(EPOCH FROM (now() - max(timestamp))), s.name\nfrom detection\n      join station s on detection.station_id = s.id\ngroup by detection.station_id, s.id, s.name\norder by s.name;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "battery"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "detection",
+          "timeColumn": "\"timestamp\"",
+          "timeColumnType": "timestamp",
+          "urlPath": "",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Station latest detection",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -876,10 +1090,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 8,
         "x": 16,
-        "y": 8
+        "y": 11
       },
       "id": 4,
       "options": {
@@ -897,7 +1111,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "exemplar": true,
@@ -989,10 +1203,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 8,
         "x": 16,
-        "y": 12
+        "y": 14
       },
       "id": 6,
       "options": {
@@ -1010,7 +1224,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "exemplar": true,
@@ -1051,26 +1265,6 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 16
-      },
-      "id": 28,
-      "options": {
-        "content": "<img border=\"0\" src=\"https://image.buienradar.nl/2.0/image/animation/RadarMapRainWebmercatorBE?height=400&width=400&extension=png&renderBackground=True&RenderBranding=true&renderText=True&history=0&forecast=18&skip=1\">",
-        "mode": "html"
-      },
-      "pluginVersion": "8.5.0",
-      "title": "Rain",
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1103,14 +1297,15 @@
         "h": 7,
         "w": 4,
         "x": 16,
-        "y": 16
+        "y": 17
       },
       "id": 2,
       "options": {
         "alignValue": "left",
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "mergeValues": true,
         "rowHeight": 0.9,
@@ -1209,14 +1404,15 @@
         "h": 7,
         "w": 4,
         "x": 20,
-        "y": 16
+        "y": 17
       },
       "id": 7,
       "options": {
         "alignValue": "left",
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "mergeValues": true,
         "rowHeight": 0.9,
@@ -1261,126 +1457,10 @@
         }
       ],
       "type": "state-timeline"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 18,
-        "w": 6,
-        "x": 9,
-        "y": 22
-      },
-      "id": 15,
-      "options": {
-        "basemap": {
-          "config": {},
-          "name": "Layer 0",
-          "type": "xyz"
-        },
-        "controls": {
-          "mouseWheelZoom": true,
-          "showAttribution": true,
-          "showDebug": false,
-          "showScale": false,
-          "showZoom": true
-        },
-        "layers": [
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "field": "Value #A",
-                  "fixed": "dark-green"
-                },
-                "opacity": 1,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 10,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/square.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "location": {
-              "mode": "coords"
-            },
-            "name": "Layer 1",
-            "type": "markers"
-          }
-        ],
-        "view": {
-          "id": "coords",
-          "lat": 51.042569,
-          "lon": 3.725806,
-          "zoom": 17.68
-        }
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "probe_success{job=\"blackbox-ping\", service=\"station\"}",
-          "format": "table",
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Map",
-      "type": "geomap"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
