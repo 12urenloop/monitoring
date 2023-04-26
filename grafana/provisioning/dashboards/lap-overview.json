@@ -25,7 +25,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -199,12 +198,13 @@
         ]
       },
       "gridPos": {
-        "h": 14,
+        "h": 18,
         "w": 24,
         "x": 0,
         "y": 0
       },
       "id": 4,
+      "interval": "10s",
       "options": {
         "footer": {
           "fields": "",
@@ -221,7 +221,7 @@
           }
         ]
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -410,18 +410,100 @@
         }
       ],
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 6,
+      "interval": "10s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^laps$/",
+          "values": true
+        },
+        "text": {
+          "titleSize": 50,
+          "valueSize": 150
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT t.name as team_name, COUNT(*) as laps\nFROM team t join lap l ON t.id = l.team_id\nWHERE lap_source_id = 5\nGROUP BY team_name\nORDER BY laps DESC\nLIMIT 3",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "type": "stat"
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 36,
+  "refresh": "",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2023-03-07T22:41:47.858Z",
-    "to": "2023-03-07T22:51:47.858Z"
+    "from": "now-15m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [

@@ -43,3 +43,8 @@
   labels:
     service: manualcount
     name: emanualcount
+- targets:
+    - live.12urenloop.be
+  labels:
+    service: livesite
+    name: livesite

@@ -3,50 +3,43 @@
   labels:
     service: station
     name: ronny01
-    lat: 51.04199
-    lon: 3.72566
+    dbname: RONNY1
 - targets:
     - $RONNY02_IP
   labels:
     service: station
     name: ronny02
-    lat: 51.04198
-    lon: 3.72610
+    dbname: RONNY2
 - targets:
     - $RONNY03_IP
   labels:
     service: station
     name: ronny03
-    lat: 51.04238
-    lon: 3.72633
+    dbname: RONNY3
 - targets:
     - $RONNY04_IP
   labels:
     service: station
     name: ronny04
-    lat: 51.04294
-    lon: 3.72636
+    dbname: RONNY4
 - targets:
     - $RONNY05_IP
   labels:
     service: station
     name: ronny05
-    lat: 51.04319
-    lon: 3.72580
+    dbname: RONNY5
 - targets:
     - $RONNY06_IP
   labels:
     service: station
     name: ronny06
-    lat: 51.04281
-    lon: 3.72565
+    dbname: RONNY6
 - targets:
     - $RONNY07_IP
   labels:
     service: station
     name: ronny07
-    lat: 51.04226
-    lon: 3.72565
+    dbname: RONNY7
 - targets:
     - $CLIENT1_IP
   labels:
@@ -57,3 +50,38 @@
   labels:
     service: client2
     name: client2
+- targets:
+    - 172.12.10.156
+  labels:
+    service: switch
+    name: switch-peterman
+- targets:
+    - 172.12.10.160
+  labels:
+    service: switch
+    name: switch-kassa
+- targets:
+    - 172.12.10.162
+  labels:
+    service: switch
+    name: switch-ledwall
+- targets:
+    - 172.12.10.153
+  labels:
+    service: AP
+    name: ap-peterman
+- targets:
+    - 172.12.10.143
+  labels:
+    service: AP
+    name: ap-12ul
+- targets:
+    - 172.12.10.149
+  labels:
+    service: AP
+    name: ap-buysse
+- targets:
+    - 172.12.10.161
+  labels:
+    service: AP
+    name: ap-kassa

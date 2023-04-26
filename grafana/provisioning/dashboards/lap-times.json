@@ -24,8 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1678301154197,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -40,6 +38,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -88,7 +88,7 @@
       },
       "gridPos": {
         "h": 11,
-        "w": 19,
+        "w": 17,
         "x": 0,
         "y": 0
       },
@@ -101,7 +101,8 @@
             "mean"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -148,72 +149,56 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
           "mappings": [],
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
               },
               {
-                "color": "dark-red",
-                "value": 10
+                "color": "#EAB839",
+                "value": 90
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 120
               }
             ]
-          }
+          },
+          "unit": "s"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "timestamp (max)"
+              "options": "since"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "dateTimeAsIsoNoDateIfToday"
-              },
-              {
-                "id": "displayName",
-                "value": "Last lap"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "team_name"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Team name"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Team name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 237
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "semi-dark-orange",
+                        "index": 0,
+                        "text": "team has no laps"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
               }
             ]
           }
@@ -221,87 +206,68 @@
       },
       "gridPos": {
         "h": 22,
-        "w": 5,
-        "x": 19,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "id": 6,
+      "interval": "3s",
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "show": false
+          "fields": "/^since$/",
+          "values": true
         },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Last lap"
-          }
-        ]
+        "text": {
+          "titleSize": 15
+        },
+        "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "P3B066C7CF800AEFC"
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
           },
-          "fields": [
-            {
-              "jsonPath": "$.[*].timestamp",
-              "language": "jsonpath",
-              "name": "",
-              "type": "time"
-            },
-            {
-              "jsonPath": "$.[*].team_name",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "queryParams": "",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))) as since, t.name as name\nfrom lap\n        right join lap_source ls on (lap.lap_source_id = ls.id and ls.name = 'robust-lapper')\n        right join team t on lap.team_id = t.id\ngroup by team_id, t.name",
           "refId": "A",
-          "urlPath": "/monitoring/team-lap-times/$Lapper"
-        }
-      ],
-      "title": "Panel Title",
-      "transformations": [
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "team_name": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "timestamp": {
-                "aggregations": [
-                  "max"
-                ],
-                "operation": "aggregate"
-              }
-            }
-          }
-        },
-        {
-          "id": "convertFieldType",
-          "options": {
-            "conversions": [
+          "sql": {
+            "columns": [
               {
-                "destinationType": "time",
-                "targetField": "timestamp (max)"
+                "parameters": [],
+                "type": "function"
               }
             ],
-            "fields": {}
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
           }
         }
       ],
-      "type": "table"
+      "title": "Time since last lap",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {}
+        }
+      ],
+      "type": "stat"
     },
     {
       "datasource": {
@@ -314,6 +280,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -362,7 +330,7 @@
       },
       "gridPos": {
         "h": 11,
-        "w": 19,
+        "w": 17,
         "x": 0,
         "y": 11
       },
@@ -375,7 +343,8 @@
             "mean"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -420,8 +389,8 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
-  "schemaVersion": 36,
+  "refresh": "5s",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -468,6 +437,6 @@
   "timezone": "",
   "title": "Lap times",
   "uid": "t3OIEkaVk",
-  "version": 1,
+  "version": 4,
   "weekStart": ""
 }

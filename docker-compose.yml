@@ -22,7 +22,6 @@ services:
       - "--web.console.templates=/usr/share/prometheus/consoles"
     network_mode: host
     depends_on:
-     depends_on:
       - blackbox
       - snmp
     # ports:

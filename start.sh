@@ -31,4 +31,4 @@ envsubst < timesync/config.template.py \
          > timesync/config.py
 
 # Starting monitoring
-docker-compose up --build
+docker-compose up --build -d

@@ -26,15 +26,13 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13702,
   "graphTooltip": 0,
-  "id": 15,
-  "iteration": 1651066452859,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ocBf6n87k"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "- *Load* - CPU capasity used (load average for last 1 minute divided by CPU cores count)\n- *CPU* - CPU usage\n- *Memory* - memory usage\n- *Filesystem* - filesystem usage\n- *Disk read* - maximum among all disks read rate\n- *Dist write* - maximum among all disks write rate\n- *Net recv* - maximum among all NIC's receive rate\n- *Net trans* - maximum among all NIC's transmit rate\n- *Net sock* - used network sockets \n- *TCP estab* - TCP established connections\n- *TCP tw* - TCP sockets in TIME-WAIT status",
       "fieldConfig": {
@@ -580,6 +578,18 @@
                 "value": 78
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Host"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 99
+              }
+            ]
           }
         ]
       },
@@ -606,9 +616,14 @@
           }
         ]
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "node_uname_info{job=~\"$job\"}",
           "format": "table",
@@ -618,6 +633,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "(1 - avg(rate(node_cpu_seconds_total{job=~\"$job\",mode=\"idle\"}[$__rate_interval])) by (instance)) * 100",
           "format": "table",
@@ -627,6 +646,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "(1 - (node_memory_MemAvailable_bytes{job=~\"$job\"} / (node_memory_MemTotal_bytes{job=~\"$job\"}))) * 100",
           "format": "table",
           "instant": true,
@@ -635,6 +658,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "max((1 - (node_filesystem_free_bytes{job=~\"$job\"} / node_filesystem_size_bytes{job=~\"$job\"})) * 100) by (instance)",
           "format": "table",
           "instant": true,
@@ -643,6 +670,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "max(rate(node_disk_read_bytes_total{job=~\"$job\"}[$__rate_interval])) by (instance)",
           "format": "table",
@@ -652,6 +683,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "max(rate(node_disk_written_bytes_total{job=~\"$job\"}[$__rate_interval])) by (instance)",
           "format": "table",
@@ -661,6 +696,10 @@
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "node_netstat_Tcp_CurrEstab{job=~\"$job\"} - 0",
           "format": "table",
           "instant": true,
@@ -669,6 +708,10 @@
           "refId": "I"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "node_sockstat_TCP_tw{job=~\"$job\"} - 0",
           "format": "table",
           "instant": true,
@@ -677,6 +720,10 @@
           "refId": "J"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "max(rate(node_network_receive_bytes_total{job=~\"$job\"}[$__rate_interval])*8) by (instance)",
           "format": "table",
@@ -686,6 +733,10 @@
           "refId": "K"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "max(rate(node_network_transmit_bytes_total{job=~\"$job\"}[$__rate_interval])*8) by (instance)",
           "format": "table",
@@ -695,6 +746,10 @@
           "refId": "L"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "avg(node_load1{job=~\"$job\"} * 100) by (instance) / count (node_cpu_seconds_total{job=~\"$job\", mode=\"system\"}) by (instance)",
           "format": "table",
@@ -704,6 +759,10 @@
           "refId": "M"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "node_sockstat_sockets_used{job=~\"$job\"}",
           "format": "table",
           "instant": true,
@@ -768,68 +827,50 @@
               "job 5": true,
               "job 6": true,
               "machine": true,
-              "nodename": true,
+              "nodename": false,
               "release": true,
               "sysname": true,
               "version": true
             },
             "indexByName": {
-              "Time 1": 16,
-              "Time 10": 44,
-              "Time 11": 48,
-              "Time 12": 49,
-              "Time 13": 50,
-              "Time 14": 51,
-              "Time 2": 25,
-              "Time 3": 29,
-              "Time 4": 34,
-              "Time 5": 36,
-              "Time 6": 37,
-              "Time 7": 38,
-              "Time 8": 39,
-              "Time 9": 40,
-              "Value #A": 15,
-              "Value #B": 3,
-              "Value #C": 5,
-              "Value #D": 6,
-              "Value #E": 2,
-              "Value #F": 7,
-              "Value #G": 8,
-              "Value #H": 9,
-              "Value #I": 13,
-              "Value #J": 14,
-              "Value #K": 10,
-              "Value #L": 11,
-              "Value #M": 4,
-              "Value #N": 12,
-              "__name__ 1": 17,
-              "__name__ 2": 26,
-              "__name__ 3": 52,
-              "datacenter 1": 0,
-              "datacenter 2": 27,
-              "datacenter 3": 30,
-              "datacenter 4": 41,
-              "datacenter 5": 45,
-              "datacenter 6": 53,
-              "domainname": 18,
-              "hostname 1": 1,
-              "hostname 2": 33,
-              "hostname 3": 35,
-              "hostname 4": 42,
-              "hostname 5": 46,
-              "hostname 6": 54,
-              "instance": 32,
-              "job 1": 19,
-              "job 2": 28,
-              "job 3": 31,
-              "job 4": 43,
-              "job 5": 47,
-              "job 6": 55,
-              "machine": 20,
-              "nodename": 21,
-              "release": 22,
-              "sysname": 23,
-              "version": 24
+              "Time 1": 13,
+              "Time 10": 34,
+              "Time 11": 36,
+              "Time 12": 37,
+              "Time 2": 21,
+              "Time 3": 24,
+              "Time 4": 27,
+              "Time 5": 28,
+              "Time 6": 29,
+              "Time 7": 30,
+              "Time 8": 31,
+              "Time 9": 32,
+              "Value #A": 12,
+              "Value #C": 2,
+              "Value #D": 3,
+              "Value #F": 4,
+              "Value #G": 5,
+              "Value #H": 6,
+              "Value #I": 10,
+              "Value #J": 11,
+              "Value #K": 7,
+              "Value #L": 8,
+              "Value #M": 1,
+              "Value #N": 9,
+              "__name__ 1": 14,
+              "__name__ 2": 22,
+              "domainname": 15,
+              "instance": 26,
+              "job 1": 16,
+              "job 2": 23,
+              "job 3": 25,
+              "job 4": 33,
+              "job 5": 35,
+              "machine": 17,
+              "nodename": 0,
+              "release": 18,
+              "sysname": 19,
+              "version": 20
             },
             "renameByName": {
               "Difference": "Core-LA1",
@@ -848,7 +889,8 @@
               "Value #M": "Load",
               "Value #N": "Net sock",
               "datacenter 1": "DC",
-              "hostname 1": "Node"
+              "hostname 1": "Node",
+              "nodename": "Host"
             }
           }
         }
@@ -858,7 +900,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "prometheus",
@@ -868,16 +910,16 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "ocBf6n87k"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "definition": "label_values(node_uname_info, job)",
-        "hide": 2,
+        "hide": 1,
         "includeAll": true,
         "label": "Job",
         "multi": true,
@@ -885,7 +927,7 @@
         "options": [],
         "query": {
           "query": "label_values(node_uname_info, job)",
-          "refId": "Prometheus-job-Variable-Query"
+          "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -899,7 +941,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

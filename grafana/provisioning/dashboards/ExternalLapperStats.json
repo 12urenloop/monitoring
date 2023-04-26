@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 13,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -76,7 +75,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "body": "",
@@ -171,7 +170,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -242,7 +241,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "body": "",
@@ -289,7 +288,7 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {

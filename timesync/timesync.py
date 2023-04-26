@@ -59,6 +59,15 @@ station_urls = {}
 
 def fetch_routine():
     while True:
+        try:
+            data = requests.get(TELRAAM_STATION_URL + '/station', timeout=1).json()
+            if 'name' in data[0]:
+                station_urls.clear()
+                for station_obj in data:
+                    station_urls[station_obj['name']] = station_obj['url']
+                logging.info("Telraam fetch stations success")
+        except:
+            logging.error("Telraam fetch stations failed")
         logging.info(f"Will refresh every {REFRESH_INTERVAL} s")
         # # FETCH TIMESYNC
         logging.info("Starting timestamp fetch routine")

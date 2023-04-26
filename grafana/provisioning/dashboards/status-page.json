@@ -82,7 +82,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 2,
         "x": 0,
         "y": 0
@@ -184,25 +184,28 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 8,
         "x": 2,
         "y": 0
       },
-      "id": 9,
+      "id": 31,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
         },
-        "text": {},
+        "text": {
+          "titleSize": 20,
+          "valueSize": 10
+        },
         "textMode": "auto"
       },
       "pluginVersion": "9.3.6",
@@ -212,33 +215,48 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "probe_success{job=\"blackbox\", service=\"telraam\"}",
-          "format": "time_series",
+          "expr": "probe_success{service=\"AP\", job=\"blackbox-ping\"}",
           "interval": "",
           "legendFormat": "{{name}}",
+          "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "exemplar": true,
-          "expr": "probe_success{job=\"blackbox\", service=\"manualcount\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "B"
         }
       ],
-      "title": "Service status",
+      "title": "AP Status",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Metric"
+              }
+            ]
+          }
+        },
+        {
+          "disabled": true,
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "many"
+          }
+        }
+      ],
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "PD030B881CE30D44B"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -248,17 +266,113 @@
           "mappings": [
             {
               "options": {
-                "match": "null",
-                "result": {
-                  "color": "dark-red",
-                  "index": 0
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Offline"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Online"
                 }
               },
-              "type": "special"
+              "type": "value"
             }
           ],
-          "max": 5,
-          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 10,
+        "y": 0
+      },
+      "id": 32,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 17,
+          "valueSize": 10
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "probe_success{service=\"switch\", job=\"blackbox-ping\"}",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Switch Status",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Metric"
+              }
+            ]
+          }
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "many"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -267,8 +381,12 @@
                 "value": null
               },
               {
+                "color": "orange",
+                "value": 10
+              },
+              {
                 "color": "red",
-                "value": 3
+                "value": 20
               }
             ]
           },
@@ -278,76 +396,119 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "name"
+              "options": "extract"
             },
             "properties": [
               {
-                "id": "color",
-                "value": {
-                  "mode": "continuous-BlYlRd"
-                }
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "blue",
+                        "index": 0,
+                        "text": "No detections yet"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 10,
+        "h": 3,
+        "w": 8,
+        "x": 16,
         "y": 0
       },
-      "id": 17,
+      "id": 29,
+      "interval": "2s",
+      "maxDataPoints": 1000,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^abs_offset$/",
+          "fields": "/^extract$/",
           "values": true
         },
-        "text": {},
-        "textMode": "auto"
+        "text": {
+          "titleSize": 16,
+          "valueSize": 10
+        },
+        "textMode": "value_and_name"
       },
       "pluginVersion": "9.3.6",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "PD030B881CE30D44B"
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
           },
+          "editorMode": "code",
           "fields": [
             {
-              "jsonPath": "$.[*].name",
-              "language": "jsonpath",
-              "name": "",
-              "type": "string"
-            },
-            {
-              "jsonPath": "$.[*].abs_offset",
-              "language": "jsonpath",
-              "name": "",
-              "type": "number"
-            },
-            {
-              "jsonPath": "$.[*].success",
-              "language": "jsonpath",
-              "name": "",
-              "type": "boolean"
+              "jsonPath": ""
             }
           ],
+          "format": "table",
+          "group": [],
           "method": "GET",
+          "metricColumn": "none",
           "queryParams": "",
+          "rawQuery": true,
+          "rawSql": "select EXTRACT(EPOCH FROM (now() - max(timestamp))), s.name\nfrom detection\n      right join station s on detection.station_id = s.id\ngroup by detection.station_id, s.id, s.name\norder by s.name;",
           "refId": "A",
-          "urlPath": "/"
+          "select": [
+            [
+              {
+                "params": [
+                  "battery"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "detection",
+          "timeColumn": "\"timestamp\"",
+          "timeColumnType": "timestamp",
+          "urlPath": "",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
-      "title": "Time Sync | Offsets",
+      "title": "Station latest detection",
       "transformations": [],
       "type": "stat"
     },
@@ -392,16 +553,41 @@
           },
           "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "battery"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "blue",
+                        "index": 0,
+                        "text": "No data in past minute"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 0
+        "y": 3
       },
       "id": 20,
-      "interval": "10s",
+      "interval": "5s",
       "options": {
         "colorMode": "background",
         "graphMode": "area",
@@ -414,8 +600,11 @@
           "fields": "/^battery$/",
           "values": true
         },
-        "text": {},
-        "textMode": "auto"
+        "text": {
+          "titleSize": 22,
+          "valueSize": 12
+        },
+        "textMode": "value_and_name"
       },
       "pluginVersion": "9.3.6",
       "targets": [
@@ -427,7 +616,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (baton.name) name, detection.battery as battery, detection.timestamp as timestamp, detection.id\nFROM detection right join baton ON baton.id = detection.baton_id\nORDER BY name, timestamp DESC, battery ASC",
+          "rawSql": "SELECT DISTINCT ON (baton.name) name,\n       CASE\n           -- To see last battery not regarding time, chaneg seconds into years\n           WHEN (detection.timestamp >= now() - interval '60 SECONDS') THEN detection.battery\n       END\n       AS battery\nFROM detection right join baton ON baton.id = detection.baton_id\nORDER BY name, timestamp DESC, battery ASC",
           "refId": "A",
           "sql": {
             "columns": [
@@ -457,6 +646,20 @@
       "title": "Battery percentage",
       "transformations": [
         {
+          "id": "calculateField",
+          "options": {
+            "alias": "battery_is_null",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "battery"
+              ],
+              "reducer": "allIsNull"
+            },
+            "replaceFields": false
+          }
+        },
+        {
           "id": "sortBy",
           "options": {
             "fields": {},
@@ -467,6 +670,28 @@
               }
             ]
           }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "battery_is_null"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "battery_is_null": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
         }
       ],
       "type": "stat"
@@ -475,6 +700,222 @@
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Offline"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Online"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 2,
+        "y": 4
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 33,
+          "valueSize": 25
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox\", service=\"telraam\"}",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "probe_success{job=\"blackbox\", service=\"manualcount\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "probe_success{job=\"blackbox\", service=\"livesite\"}",
+          "hide": false,
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Service status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "PD030B881CE30D44B"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "No time"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 5,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 11,
+        "y": 4
+      },
+      "id": 17,
+      "interval": "1s",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^abs_offset$/",
+          "values": true
+        },
+        "text": {
+          "titleSize": 14,
+          "valueSize": 15
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "PD030B881CE30D44B"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].name",
+              "language": "jsonpath",
+              "name": "",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$.[*].abs_offset",
+              "language": "jsonpath",
+              "name": "",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.[*].success",
+              "language": "jsonpath",
+              "name": "",
+              "type": "boolean"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/"
+        }
+      ],
+      "title": "Time Sync | Offsets",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
@@ -497,21 +938,23 @@
                 "value": null
               },
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 14,
-        "w": 6,
+        "w": 5,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 15,
+      "interval": "2s",
       "options": {
         "basemap": {
           "config": {},
@@ -529,13 +972,13 @@
         "layers": [
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
-                  "field": "Value #A",
-                  "fixed": "dark-green"
+                  "field": "Value",
+                  "fixed": "green"
                 },
-                "opacity": 1,
+                "opacity": 0.5,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -543,27 +986,76 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 10,
+                  "fixed": 25,
                   "max": 15,
-                  "min": 2
+                  "min": 1
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/square.svg",
+                  "field": "",
+                  "fixed": "img/icons/unicons/abacus.svg",
                   "mode": "fixed"
+                },
+                "text": {
+                  "field": "dbname",
+                  "fixed": "",
+                  "mode": "field"
                 },
                 "textConfig": {
                   "fontSize": 12,
                   "offsetX": 0,
-                  "offsetY": 0,
+                  "offsetY": -25,
                   "textAlign": "center",
                   "textBaseline": "middle"
                 }
               }
             },
             "location": {
-              "mode": "coords"
+              "mode": "auto"
             },
-            "name": "Layer 1",
+            "name": "Station Layer",
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "blue"
+                },
+                "opacity": 0,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 1,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/cross.svg",
+                  "mode": "fixed"
+                },
+                "text": {
+                  "field": "team_name",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "textConfig": {
+                  "fontSize": 20,
+                  "offsetX": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Team Layer",
+            "tooltip": true,
             "type": "markers"
           }
         ],
@@ -574,28 +1066,64 @@
           "allLayers": true,
           "id": "coords",
           "lat": 51.042569,
-          "lon": 3.725806,
-          "zoom": 17.68
+          "lon": 3.725906,
+          "zoom": 17.4
         }
       },
       "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "-- cursed query\nSELECT inner2.team_name AS team_name, s.coord_x AS lat, s.coord_y AS lon, s.name as dbname\nFROM (SELECT inner1.team_name AS team_name, d.station_id\n      FROM (SELECT t.name as team_name, MAX(d.timestamp) as timestamp\n            FROM detection d\n                     join team t on d.baton_id = t.baton_id\n                     join station s on d.station_id = s.id\n            WHERE t.name IN ([[TEAM_NAME]])\n            GROUP BY t.name) inner1\n               join detection d ON d.timestamp = inner1.timestamp) inner2\nright join station s on s.id = inner2.station_id",
+          "refId": "team_latest_detection_data",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "exemplar": true,
+          "exemplar": false,
           "expr": "probe_success{job=\"blackbox-ping\", service=\"station\"}",
           "format": "table",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A"
+          "range": false,
+          "refId": "pings"
         }
       ],
       "title": "Map",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
       "type": "geomap"
     },
     {
@@ -642,8 +1170,9 @@
                     "options": {
                       "match": "null",
                       "result": {
-                        "color": "orange",
-                        "index": 0
+                        "color": "blue",
+                        "index": 0,
+                        "text": "Not yet seen"
                       }
                     },
                     "type": "special"
@@ -657,8 +1186,8 @@
       "gridPos": {
         "h": 14,
         "w": 7,
-        "x": 6,
-        "y": 8
+        "x": 5,
+        "y": 9
       },
       "id": 19,
       "options": {
@@ -759,31 +1288,15 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "P3B066C7CF800AEFC"
+        "type": "datasource",
+        "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "continuous-RdYlGr"
           },
-          "mappings": [
-            {
-              "options": {
-                "false": {
-                  "color": "green",
-                  "index": 1,
-                  "text": "No"
-                },
-                "true": {
-                  "color": "red",
-                  "index": 0,
-                  "text": "YES"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -792,15 +1305,16 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 14,
-        "w": 3,
-        "x": 13,
-        "y": 8
+        "w": 4,
+        "x": 12,
+        "y": 9
       },
       "id": 21,
       "options": {
@@ -812,10 +1326,13 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^rebooted$/",
+          "fields": "/^uptime_ms$/",
           "values": true
         },
-        "text": {},
+        "text": {
+          "titleSize": 25,
+          "valueSize": 15
+        },
         "textMode": "auto"
       },
       "pluginVersion": "9.3.6",
@@ -837,6 +1354,7 @@
               "name": ""
             }
           ],
+          "hide": true,
           "method": "GET",
           "params": [
             [
@@ -847,9 +1365,44 @@
           "queryParams": "",
           "refId": "A",
           "urlPath": "/monitoring/batons"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT uptime_ms, b.name\nfrom detection\njoin baton b on b.id = detection.baton_id\nwhere timestamp in (SELECT max(timestamp) FROM detection group by baton_id)",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "uptime_ms",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "detection"
         }
       ],
-      "title": "Baton restarted",
+      "title": "Baton uptime/restarted",
       "transformations": [
         {
           "id": "sortBy",
@@ -864,175 +1417,6 @@
           }
         }
       ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 5
-              },
-              {
-                "color": "red",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "stationId"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "2": {
-                        "index": 0,
-                        "text": "Ronny01"
-                      },
-                      "4": {
-                        "index": 1,
-                        "text": "Ronny02"
-                      },
-                      "5": {
-                        "index": 5,
-                        "text": "Ronny03"
-                      },
-                      "6": {
-                        "index": 4,
-                        "text": "Ronny04"
-                      },
-                      "7": {
-                        "index": 6,
-                        "text": "Ronny05"
-                      },
-                      "8": {
-                        "index": 2,
-                        "text": "Ronny06"
-                      },
-                      "9": {
-                        "index": 3,
-                        "text": "Ronny07"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 8,
-        "x": 16,
-        "y": 8
-      },
-      "id": 29,
-      "interval": "2s",
-      "maxDataPoints": 1000,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^extract$/",
-          "values": true
-        },
-        "text": {},
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "cacheDurationSeconds": 300,
-          "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
-          },
-          "editorMode": "code",
-          "fields": [
-            {
-              "jsonPath": ""
-            }
-          ],
-          "format": "table",
-          "group": [],
-          "method": "GET",
-          "metricColumn": "none",
-          "queryParams": "",
-          "rawQuery": true,
-          "rawSql": "select EXTRACT(EPOCH FROM (now() - max(timestamp))), s.name\nfrom detection\n      join station s on detection.station_id = s.id\ngroup by detection.station_id, s.id, s.name\norder by s.name;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "battery"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "detection",
-          "timeColumn": "\"timestamp\"",
-          "timeColumnType": "timestamp",
-          "urlPath": "",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Station latest detection",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -1108,7 +1492,10 @@
           "fields": "",
           "values": false
         },
-        "text": {},
+        "text": {
+          "titleSize": 16,
+          "valueSize": 10
+        },
         "textMode": "auto"
       },
       "pluginVersion": "9.3.6",
@@ -1221,7 +1608,10 @@
           "fields": "",
           "values": false
         },
-        "text": {},
+        "text": {
+          "titleSize": 16,
+          "valueSize": 10
+        },
         "textMode": "auto"
       },
       "pluginVersion": "9.3.6",
@@ -1457,6 +1847,147 @@
         }
       ],
       "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 11,
+        "x": 0,
+        "y": 23
+      },
+      "id": 35,
+      "options": {
+        "bgColor": "",
+        "clockType": "24 hour",
+        "countdownSettings": {
+          "endCountdownTime": "2023-04-26T14:58:50+02:00",
+          "endText": "00:00:00"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2023-04-26T09:00:00+02:00",
+          "beginText": "00:00:00"
+        },
+        "dateSettings": {
+          "dateFormat": "YYYY-MM-DD",
+          "fontSize": "20px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "mode": "countup",
+        "refresh": "sec",
+        "timeSettings": {
+          "fontSize": "40px",
+          "fontWeight": "bold"
+        },
+        "timezone": "",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": false,
+          "zoneFormat": "offsetAbbv"
+        }
+      },
+      "pluginVersion": "2.1.3",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 11,
+        "y": 23
+      },
+      "id": 34,
+      "options": {
+        "bgColor": "",
+        "clockType": "24 hour",
+        "countdownSettings": {
+          "endCountdownTime": "2023-04-26T14:58:50+02:00",
+          "endText": "00:00:00"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2023-04-26T14:58:50+02:00",
+          "beginText": "00:00:00"
+        },
+        "dateSettings": {
+          "dateFormat": "YYYY-MM-DD",
+          "fontSize": "20px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "mode": "time",
+        "refresh": "sec",
+        "timeSettings": {
+          "fontSize": "80px",
+          "fontWeight": "bold"
+        },
+        "timezone": "",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": false,
+          "zoneFormat": "offsetAbbv"
+        }
+      },
+      "pluginVersion": "2.1.3",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 11,
+        "x": 0,
+        "y": 25
+      },
+      "id": 36,
+      "options": {
+        "bgColor": "",
+        "clockType": "24 hour",
+        "countdownSettings": {
+          "endCountdownTime": "2023-04-26T21:00:00+02:00",
+          "endText": "00:00:00"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2023-04-26T09:00:00+02:00",
+          "beginText": "00:00:00"
+        },
+        "dateSettings": {
+          "dateFormat": "YYYY-MM-DD",
+          "fontSize": "20px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "mode": "countdown",
+        "refresh": "sec",
+        "timeSettings": {
+          "fontSize": "40px",
+          "fontWeight": "bold"
+        },
+        "timezone": "",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": false,
+          "zoneFormat": "offsetAbbv"
+        }
+      },
+      "pluginVersion": "2.1.3",
+      "type": "grafana-clock-panel"
     }
   ],
   "refresh": "5s",
@@ -1464,7 +1995,37 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "HILOK",
+            "VTK"
+          ],
+          "value": [
+            "HILOK",
+            "VTK"
+          ]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "P153BFFACB2904795"
+        },
+        "definition": "select name as team_name from team",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "TEAM_NAME",
+        "options": [],
+        "query": "select name as team_name from team",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -1474,6 +2035,6 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 1,
+  "version": 27,
   "weekStart": ""
 }

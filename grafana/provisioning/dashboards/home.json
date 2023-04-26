@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -49,7 +48,7 @@
         "showStarred": true,
         "tags": []
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "title": "Home",
       "type": "dashlist"
     },
@@ -118,7 +117,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -172,25 +171,25 @@
         "stateFilter": {
           "error": true,
           "firing": true,
-          "inactive": true,
           "noData": false,
-          "normal": false,
+          "normal": true,
           "pending": true
-        }
+        },
+        "viewMode": "list"
       },
       "title": "Alerts",
       "type": "alertlist"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},

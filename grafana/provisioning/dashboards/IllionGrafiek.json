@@ -24,8 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 14,
-  "iteration": 1678357333017,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -40,6 +38,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -100,7 +100,8 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -113,11 +114,12 @@
             "type": "postgres",
             "uid": "P153BFFACB2904795"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(\"timestamp\"),\n  station_id::text,\n  avg(\"rssi\") as \"rssi\"\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\") AND baton_id IN ([[baton]])\nGROUP BY 1, 2\nORDER BY 1",
+          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  station_id::text,\n  -- avg(\"rssi\") as \"rssi\"\n  rssi\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour') AND baton_id IN ([[baton]])\n-- GROUP BY 1, 2\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -135,6 +137,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "detection",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
@@ -170,6 +189,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -213,32 +234,7 @@
           },
           "unit": "dBm"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "rssi 1"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 10,
@@ -255,7 +251,8 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -268,11 +265,12 @@
             "type": "postgres",
             "uid": "P153BFFACB2904795"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(\"timestamp\"),\n  baton_id::text,\n  avg(\"rssi\") as \"rssi\"\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\")\nGROUP BY 1, 2\nORDER BY 1",
+          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  baton_id::text,\n  avg(\"rssi\") as \"rssi\"\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour')\nGROUP BY 1, 2\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -290,6 +288,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "detection",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
@@ -315,44 +330,88 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 36,
+  "refresh": "",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
-            "1"
+            "C (HILOK)",
+            "B (VTK)",
+            "K (VLK)",
+            "D (VGK)",
+            "F (VEK - Moeder Lies)",
+            "G (Wetenschappen - VLAK - VETO)",
+            "H (none)",
+            "I (Hermes - GFK)",
+            "J (Politeia)",
+            "L (HK)",
+            "M (VRG)",
+            "N (VPPK)",
+            "A (none)",
+            "P (SK)",
+            "T (Lombrosiana - VBK)",
+            "Q (LILA)",
+            "R (Antilopen)",
+            "O (none)",
+            "Y (HILOK Roze)",
+            "U (Blandinia)",
+            "V (none)",
+            "W (none)",
+            "X (none)"
           ],
           "value": [
-            "1"
+            "2",
+            "3",
+            "4",
+            "5",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25"
           ]
         },
         "datasource": {
           "type": "postgres",
           "uid": "P153BFFACB2904795"
         },
-        "definition": "select id from baton",
+        "definition": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
         "hide": 0,
         "includeAll": false,
         "multi": true,
         "name": "baton",
         "options": [],
-        "query": "select id from baton",
+        "query": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "2022-03-31T18:10:56.000Z",
-    "to": "2022-03-31T18:12:31.000Z"
+    "from": "now-40s",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
