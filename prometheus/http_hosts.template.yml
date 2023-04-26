@@ -3,43 +3,4 @@
   labels:
     service: station
     name: ronny01
-- targets:
-    - $IP_PORT_RONNY02/time
-  labels:
-    service: station
-    name: ronny02
-- targets:
-    - $IP_PORT_RONNY03/time
-  labels:
-    service: station
-    name: ronny03
-- targets:
-    - $IP_PORT_RONNY04/time
-  labels:
-    service: station
-    name: ronny04
-- targets:
-    - $IP_PORT_RONNY05/time
-  labels:
-    service: station
-    name: ronny05
-- targets:
-    - $IP_PORT_RONNY06/time
-  labels:
-    service: station
-    name: ronny06
-- targets:
-    - $IP_PORT_RONNY07/time
-  labels:
-    service: station
-    name: ronny07
-- targets:
-    - $IP_PORT_TELRAAM/time
-  labels:
-    service: telraam
-    name: telraam_1
-- targets:
-    - $IP_PORT_MANUALCOUNT/time
-  labels:
-    service: manualcount
-    name: emanualcount
+

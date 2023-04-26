@@ -5,53 +5,7 @@
     name: ronny01
     lat: 51.04199
     lon: 3.72566
-- targets:
-    - $RONNY02_IP
-  labels:
-    service: station
-    name: ronny02
-    lat: 51.04198
-    lon: 3.72610
-- targets:
-    - $RONNY03_IP
-  labels:
-    service: station
-    name: ronny03
-    lat: 51.04238
-    lon: 3.72633
-- targets:
-    - $RONNY04_IP
-  labels:
-    service: station
-    name: ronny04
-    lat: 51.04294
-    lon: 3.72636
-- targets:
-    - $RONNY05_IP
-  labels:
-    service: station
-    name: ronny05
-    lat: 51.04319
-    lon: 3.72580
-- targets:
-    - $RONNY06_IP
-  labels:
-    service: station
-    name: ronny06
-    lat: 51.04281
-    lon: 3.72565
-- targets:
-    - $RONNY07_IP
-  labels:
-    service: station
-    name: ronny07
-    lat: 51.04226
-    lon: 3.72565
-- targets:
-    - $CLIENT1_IP
-  labels:
-    service: client1
-    name: client1
+
 - targets:
     - $CLIENT2_IP
   labels:

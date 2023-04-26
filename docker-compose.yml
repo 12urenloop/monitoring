@@ -23,8 +23,14 @@ services:
     network_mode: host
     depends_on:
       - blackbox
+      - snmp
     # ports:
     #   - "9090:9090"
+  snmp:
+    build:
+      context: snmp/
+      dockerfile: Dockerfile
+    network_mode: host
   blackbox:
     build:
       context: blackbox/
