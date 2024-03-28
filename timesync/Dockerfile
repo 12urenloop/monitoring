@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:trixie-slim
 
 RUN apt-get update && \
 	apt-get install -yqq --no-install-recommends python3-pip build-essential
