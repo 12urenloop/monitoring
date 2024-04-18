@@ -14,6 +14,16 @@ export IP_PORT_RONNY07="${RONNY07_IP}:${RONNY07_PORT}"
 export IP_PORT_TELRAAM="${TELRAAM_IP}:${TELRAAM_PORT}"
 export IP_PORT_MANUALCOUNT="${MANUALCOUNT_IP}:${MANUALCOUNT_PORT}"
 
+rm -f \
+    prometheus/http_hosts.yml \
+    prometheus/ping_hosts.yml \
+    prometheus/prometheus.yml \
+    grafana/provisioning/datasources/datasource.yml \
+    grafana/config.monitoring \
+    timesync/config.py \
+    2>/dev/null
+
+
 envsubst < prometheus/http_hosts.template.yml \
          > prometheus/http_hosts.yml
 envsubst < prometheus/ping_hosts.template.yml \
@@ -29,6 +39,15 @@ envsubst < grafana/config.template.monitoring \
 
 envsubst < timesync/config.template.py \
          > timesync/config.py
+
+chmod 444 \
+    prometheus/http_hosts.yml \
+    prometheus/ping_hosts.yml \
+    prometheus/prometheus.yml \
+    grafana/provisioning/datasources/datasource.yml \
+    grafana/config.monitoring \
+    timesync/config.py
+
 
 # Starting monitoring
 docker-compose up --build -d
