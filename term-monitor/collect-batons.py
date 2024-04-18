@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 
 from stations import stations
 from batons import batons
+from telraam import telraam
 
 baton_info = {}
 
@@ -29,7 +30,7 @@ def fetch_detections(station, count_thousand: int = 1):
     return detections
 
 def fetch_detections_telraam():
-    batons  = requests.get("http://172.12.50.21:8080/baton").json()
+    batons  = requests.get(f"http://{telraam}:8080/baton").json()
     batons = {b["id"]: b for b in batons}
     detections = requests.get("http://172.12.50.21:8080/detection").json()
     return [{"detection_timestamp": d["timestamp"]/1000, "battery": d["battery"], "mac": batons[d["batonId"]]["mac"]} for d in detections]
@@ -42,7 +43,8 @@ for station in stations:
     # detections = fetch_detections_telraam()
     except:
         print("AAAhhhhh")
-        exit(1)
+        pass
+        # exit(1)
     for detection in detections:
         mac = detection["mac"][-2:].upper()
         utc_dt = datetime.utcfromtimestamp(detection["detection_timestamp"])

@@ -50,4 +50,4 @@ chmod 444 \
 
 
 # Starting monitoring
-docker-compose up --build -d
+docker compose up --build -d
