@@ -34,6 +34,11 @@
     service: station
     name: ronny07
 - targets:
+    - $IP_PORT_RONNY08/time
+  labels:
+    service: station
+    name: ronny08
+- targets:
     - $IP_PORT_TELRAAM/time
   labels:
     service: telraam

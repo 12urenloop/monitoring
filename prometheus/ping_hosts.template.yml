@@ -41,6 +41,12 @@
     name: ronny07
     dbname: RONNY7
 - targets:
+    - $RONNY08_IP
+  labels:
+    service: station
+    name: ronny08
+    dbname: RONNY8
+- targets:
     - $CLIENT1_IP
   labels:
     service: client1
