@@ -38,6 +38,11 @@ services:
     network_mode: host
     # ports:
       # - "9115:9115"
+  json:
+    build:
+      context: json_exporter/
+      dockerfile: Dockerfile
+    network_mode: host
   grafana:
     build:
       context: grafana

@@ -1,0 +1,8 @@
+---
+modules:
+  loxsi:
+    headers:
+      Loxsi-Key: lekey
+    metrics:
+    - name: count
+      path: '{ .count }'
