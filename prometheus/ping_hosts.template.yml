@@ -57,37 +57,42 @@
     service: client2
     name: client2
 - targets:
+    - 172.12.50.150
+  labels:
+    service: switch
+    name: crew
+- targets:
+    - 172.12.50.151
+  labels:
+    service: switch
+    name: container
+- targets:
+    - 172.12.50.152
+  labels:
+    service: AP
+    name: crew
+- targets:
+    - 172.12.50.153
+  labels:
+    service: AP
+    name: container
+- targets:
+    - 172.12.50.154
+  labels:
+    service: AP
+    name: bar
+- targets:
+    - 172.12.50.155
+  labels:
+    service: AP
+    name: peterman
+- targets:
     - 172.12.10.156
   labels:
-    service: switch
-    name: switch-peterman
+    service: AP
+    name: foh
 - targets:
-    - 172.12.10.160
-  labels:
-    service: switch
-    name: switch-kassa
-- targets:
-    - 172.12.10.162
-  labels:
-    service: switch
-    name: switch-ledwall
-- targets:
-    - 172.12.10.153
+    - 172.12.10.157
   labels:
     service: AP
-    name: ap-peterman
-- targets:
-    - 172.12.10.143
-  labels:
-    service: AP
-    name: ap-12ul
-- targets:
-    - 172.12.10.149
-  labels:
-    service: AP
-    name: ap-buysse
-- targets:
-    - 172.12.10.161
-  labels:
-    service: AP
-    name: ap-kassa
+    name: partners
