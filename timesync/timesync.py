@@ -4,7 +4,7 @@ import requests
 import time
 from threading import Thread
 from dataclasses import dataclass
-from config import REFRESH_INTERVAL, TELRAAM_STATION_URL, EXTRA_SERVERS, LOGGING_LEVEL
+from config import REFRESH_INTERVAL, EXTRA_SERVERS, LOGGING_LEVEL
 import traceback
 import datetime
 import logging
@@ -55,24 +55,12 @@ def serialize_timemeasurement(name, measurement):
     return r
 
 server_status = {}
-station_urls = {}
 
 def fetch_routine():
     while True:
-        try:
-            data = requests.get(TELRAAM_STATION_URL + '/station', timeout=1).json()
-            if 'name' in data[0]:
-                station_urls.clear()
-                for station_obj in data:
-                    station_urls[station_obj['name']] = station_obj['url']
-                logging.info("Telraam fetch stations success")
-        except:
-            logging.error("Telraam fetch stations failed")
         logging.info(f"Will refresh every {REFRESH_INTERVAL} s")
         # # FETCH TIMESYNC
         logging.info("Starting timestamp fetch routine")
-        for name, url in station_urls.items():
-            server_status[name] = get_server_sync(name, url)
         for name, url in EXTRA_SERVERS.items():
             server_status[name] = get_server_sync(name, url)
 
