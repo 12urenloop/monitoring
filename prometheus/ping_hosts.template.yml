@@ -87,12 +87,12 @@
     service: AP
     name: peterman
 - targets:
-    - 172.12.10.156
+    - 172.12.50.156
   labels:
     service: AP
     name: foh
 - targets:
-    - 172.12.10.157
+    - 172.12.50.157
   labels:
     service: AP
     name: partners
