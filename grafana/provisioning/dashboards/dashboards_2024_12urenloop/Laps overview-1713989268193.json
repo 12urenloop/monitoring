@@ -1,0 +1,541 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:32",
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P3B066C7CF800AEFC"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-green",
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diff HMM Rob"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-GrYlRd"
+                }
+              },
+              {
+                "id": "max",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MaxHR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MinHR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diff Man HMM"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-GrYlRd"
+                }
+              },
+              {
+                "id": "max",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MaxMH"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MinMH"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diff Man Rob"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "max",
+                "value": 3
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-GrYlRd"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MaxMR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MinMR"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "interval": "10s",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "RobustLapper"
+          }
+        ]
+      },
+      "pluginVersion": "10.1.9",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P3B066C7CF800AEFC"
+          },
+          "fields": [
+            {
+              "jsonPath": "$[*].team_name",
+              "language": "jsonpath",
+              "name": "Team name"
+            },
+            {
+              "jsonPath": "$[*].lap_counts.2",
+              "language": "jsonpath",
+              "name": "ManualCount"
+            },
+            {
+              "jsonPath": "$[*].lap_counts.4",
+              "language": "jsonpath",
+              "name": "HMM"
+            },
+            {
+              "jsonPath": "$[*].lap_counts.5",
+              "language": "jsonpath",
+              "name": "RobustLapper"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/monitoring/team-lap-counts"
+        }
+      ],
+      "title": "Current laps",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MaxHR",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "RobustLapper",
+                "HMM"
+              ],
+              "reducer": "max"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MinHR",
+            "binary": {
+              "left": "Difference percent",
+              "reducer": "sum"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "RobustLapper",
+                "HMM"
+              ],
+              "reducer": "min"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Diff HMM Rob",
+            "binary": {
+              "left": "MaxHR",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "MinHR"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "Max",
+                "Min"
+              ],
+              "reducer": "diff"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MaxMH",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "HMM"
+              ],
+              "reducer": "max"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MinMH",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "HMM"
+              ],
+              "reducer": "min"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Diff Man HMM",
+            "binary": {
+              "left": "MaxMH",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "MinMH"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "MaxMH",
+                "MinMH"
+              ],
+              "reducer": "diff"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MaxMR",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "RobustLapper"
+              ],
+              "reducer": "max"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MinMR",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "ManualCount",
+                "RobustLapper"
+              ],
+              "reducer": "min"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Diff Man Rob",
+            "binary": {
+              "left": "MaxMR",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "MinMR"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "MaxMR",
+                "MinMR"
+              ],
+              "reducer": "diff"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P153BFFACB2904795"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 6,
+      "interval": "10s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^laps$/",
+          "values": true
+        },
+        "text": {
+          "titleSize": 50,
+          "valueSize": 150
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.1.9",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT t.name as team_name, COUNT(*) as laps\nFROM team t join lap l ON t.id = l.team_id\nWHERE lap_source_id = 5\nGROUP BY team_name\nORDER BY laps DESC\nLIMIT 3",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Top 3",
+      "type": "stat"
+    }
+  ],
+  "refresh": " 5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "1s",
+      " 3s",
+      " 5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h"
+    ]
+  },
+  "timezone": "",
+  "title": "Laps overview",
+  "uid": "y9DWmy_Wk",
+  "version": 1,
+  "weekStart": ""
+}
