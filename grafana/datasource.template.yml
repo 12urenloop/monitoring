@@ -73,7 +73,6 @@ datasources:
   - name: Loki
     type: loki
     access: proxy
-    orgId: 1
     url: http://localhost:3100
     basicAuth: false
     isDefault: true
