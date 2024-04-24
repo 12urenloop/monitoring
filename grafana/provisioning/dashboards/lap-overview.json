@@ -41,7 +41,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": false,
             "inspect": false
           },
@@ -64,8 +66,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "color",
@@ -110,8 +115,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "color",
@@ -156,8 +164,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "max",
@@ -206,7 +217,9 @@
       "id": 4,
       "interval": "10s",
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -217,11 +230,11 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "ManualCount"
+            "displayName": "HMM"
           }
         ]
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -460,7 +473,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "datasource": {
@@ -491,11 +504,12 @@
           }
         }
       ],
+      "title": "Top 3",
       "type": "stat"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 37,
+  "refresh": " 5s",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -522,6 +536,6 @@
   "timezone": "",
   "title": "Laps overview",
   "uid": "y9DWmy_Wk",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }

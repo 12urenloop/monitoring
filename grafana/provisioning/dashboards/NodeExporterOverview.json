@@ -39,7 +39,9 @@
         "defaults": {
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": false,
             "inspect": false,
             "minWidth": 50
@@ -74,8 +76,11 @@
                 "value": "percent"
               },
               {
-                "id": "custom.displayMode",
-                "value": "basic"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -114,8 +119,11 @@
                 "value": "percent"
               },
               {
-                "id": "custom.displayMode",
-                "value": "basic"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -150,8 +158,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "basic"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "unit",
@@ -208,8 +219,11 @@
                 "value": 0
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -252,8 +266,11 @@
                 "value": 0
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -288,8 +305,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -336,8 +356,11 @@
                 "value": "short"
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -380,8 +403,11 @@
                 "value": "bps"
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -424,8 +450,11 @@
                 "value": "bps"
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -506,8 +535,11 @@
                 "value": "percent"
               },
               {
-                "id": "custom.displayMode",
-                "value": "basic"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -542,8 +574,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "unit",
@@ -601,7 +636,9 @@
       },
       "id": 187,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -616,7 +653,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "datasource": {
@@ -900,7 +937,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "prometheus",
@@ -917,6 +954,10 @@
           "value": [
             "$__all"
           ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(node_uname_info, job)",
         "hide": 1,

@@ -1294,7 +1294,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-RdYlGr"
+            "mode": "continuous-YlBl"
           },
           "mappings": [],
           "thresholds": {
@@ -1375,7 +1375,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT uptime_ms, b.name\nfrom detection\njoin baton b on b.id = detection.baton_id\nwhere timestamp in (SELECT max(timestamp) FROM detection group by baton_id)",
+          "rawSql": "select b.name, uptime_ms from (\n  SELECT distinct on (baton_id) baton_id, uptime_ms from detection  ORDER BY baton_id, timestamp DESC\n  ) d join baton b on d.baton_id = b.id join team t on d.baton_id = t.baton_id",
           "refId": "B",
           "sql": {
             "columns": [
@@ -2050,6 +2050,6 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

@@ -23,7 +23,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -51,6 +51,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -83,10 +84,42 @@
           },
           "unit": "dBm"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "always"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 9
+              },
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "custom.axisSoftMin",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "shades"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 13,
         "w": 24,
         "x": 0,
         "y": 0
@@ -119,7 +152,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  station_id::text,\n  -- avg(\"rssi\") as \"rssi\"\n  rssi\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour') AND baton_id IN ([[baton]])\n-- GROUP BY 1, 2\nORDER BY 1",
+          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  station.name::text,\n  -- avg(\"rssi\") as \"rssi\"\n  rssi\nFROM detection\nJOIN station on detection.station_id = station.id\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour') AND baton_id IN ([[baton]])\n-- GROUP BY 1, 2\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -164,6 +197,35 @@
               "type": "macro"
             }
           ]
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT extract(epoch from timestamp - (LAG(timestamp) OVER (PARTITION by team_id order by timestamp))) as lap_duration,\n  $__time(\"timestamp\" - interval '2 hour')\nfrom lap l join team t on l.team_id = t.id where  t.baton_id IN ([[baton]])\n  AND lap_source_id = 4",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
       "title": "Detection per station",
@@ -202,6 +264,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -237,10 +300,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 13
       },
       "id": 2,
       "options": {
@@ -270,7 +333,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  baton_id::text,\n  avg(\"rssi\") as \"rssi\"\nFROM detection\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour')\nGROUP BY 1, 2\nORDER BY 1",
+          "rawSql": "SELECT\n  $__time(\"timestamp\" - interval '2 hour'),\n  baton.name::text,\n  avg(\"rssi\") as \"rssi\"\nFROM detection\nJOIN baton on detection.baton_id = baton.id\nWHERE\n  $__timeFilter(\"timestamp\" - interval '2 hour')\nGROUP BY 1, 2\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -330,65 +393,17 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 37,
+  "refresh": false,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": [
-            "C (HILOK)",
-            "B (VTK)",
-            "K (VLK)",
-            "D (VGK)",
-            "F (VEK - Moeder Lies)",
-            "G (Wetenschappen - VLAK - VETO)",
-            "H (none)",
-            "I (Hermes - GFK)",
-            "J (Politeia)",
-            "L (HK)",
-            "M (VRG)",
-            "N (VPPK)",
-            "A (none)",
-            "P (SK)",
-            "T (Lombrosiana - VBK)",
-            "Q (LILA)",
-            "R (Antilopen)",
-            "O (none)",
-            "Y (HILOK Roze)",
-            "U (Blandinia)",
-            "V (none)",
-            "W (none)",
-            "X (none)"
-          ],
-          "value": [
-            "2",
-            "3",
-            "4",
-            "5",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25"
-          ]
+          "selected": true,
+          "text": "C (VTK)",
+          "value": "2"
         },
         "datasource": {
           "type": "postgres",
@@ -397,7 +412,7 @@
         "definition": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
         "hide": 0,
         "includeAll": false,
-        "multi": true,
+        "multi": false,
         "name": "baton",
         "options": [],
         "query": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
@@ -410,13 +425,13 @@
     ]
   },
   "time": {
-    "from": "now-40s",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Le Illion Grafiek",
   "uid": "Xn70E7a4k",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }
