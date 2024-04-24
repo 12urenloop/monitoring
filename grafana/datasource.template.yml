@@ -64,7 +64,7 @@ datasources:
     type: postgres
     url: $CLIENT2_IP:5432
     user: monitoring_user
-    database: 'telraam'
+    database: 'telraam_dev'
     secureJsonData:
       password: '$MONITORING_DB_PASSWORD'
     jsonData:

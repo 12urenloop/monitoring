@@ -16,13 +16,15 @@ scrape_configs:
   - job_name: postgres.telraam_db
     metrics_path: /metrics
     static_configs:
-      - targets: [ "$TELRAAM_IP:9187" ]
-  - job_name: snmp
+      - targets: [ "$TELRAAM_IP:9187", "172.12.50.22:9187" ]
+
+  - job_name: snmp-router
     static_configs:
       - targets:
         - $ROUTER_IP  # SNMP device
     metrics_path: /snmp
     params:
+      auth: [public_v2]
       module: [if_mib]
     relabel_configs:
       - source_labels: [__address__]
@@ -31,6 +33,22 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+  - job_name: snmp-telnet-switch
+    static_configs:
+      - targets:
+        - $TELNET_SWITCH_IP  # SNMP device
+    metrics_path: /snmp
+    params:
+      auth: [zeusisdemax_v2]
+      module: [if_mib]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
   - job_name: blackbox
     metrics_path: /probe
     params:
@@ -89,7 +107,8 @@ scrape_configs:
           '$RONNY07_IP:9100',
           '$RONNY08_IP:9100',
           '$CLIENT1_IP:9100',
-          '$CLIENT2_IP:9100'
+          '$CLIENT2_IP:9100',
+          '172.12.50.21:9101', # asimov via tunnel
         ]
 
 
@@ -106,6 +125,13 @@ scrape_configs:
           '$RONNY07_IP:9187',
           '$RONNY08_IP:9187',
       ]
+
+  - job_name: postgres.ronnys-test-dns-sd
+    metrics_path: /metrics
+    dns_sd_configs:
+    - names:
+      - _postgres_exporter._tcp.lan
+      type: "SRV"
 
 rule_files:
   - "/etc/prometheus/*.rules"

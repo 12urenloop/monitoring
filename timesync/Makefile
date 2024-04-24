@@ -13,4 +13,4 @@ dev: dev-deps
 	python3 timesync.py
 	
 prod: prod-deps
-	python3 -m gunicorn -k gevent -b 0.0.0.0:3030 "wsgi:app"
+	python3 -m gunicorn -b 0.0.0.0:3030 "wsgi:app"

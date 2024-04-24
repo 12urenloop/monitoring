@@ -39,7 +39,7 @@ def get_server_sync(name, url):
         return None
     except Exception as e:
         logging.error(f"Failed timesync {name}")
-        logging.error(traceback.format_exc())
+        #logging.error(traceback.format_exc())
         return None
     after = time.time()
     return TimeMeasurement(before, server_time, after)
@@ -65,6 +65,7 @@ def fetch_routine():
             server_status[name] = get_server_sync(name, url)
 
         time.sleep(REFRESH_INTERVAL)
+        logging.info("")
 
 
 root = Blueprint('root', __name__, url_prefix='')
