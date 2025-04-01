@@ -1,4 +1,4 @@
-FROM prometheuscommunity/json-exporter:v0.6.0
+FROM prometheuscommunity/json-exporter:v0.7.0
 
 COPY json.yml       /etc/json_exporter/config.yml
 
