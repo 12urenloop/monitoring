@@ -1,5 +1,4 @@
-version: "3.7"
-
+---
 volumes:
   telraam_grafana_storage: {}
   prometheus_data: {}
@@ -12,7 +11,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
   prometheus:
-    image: prom/prometheus:v2.51.1
+    image: prom/prometheus:v3.2.1
     volumes:
       - ./prometheus/:/etc/prometheus
       - prometheus_data:/prometheus
@@ -23,11 +22,11 @@ services:
       - "--web.console.templates=/usr/share/prometheus/consoles"
       - "--web.enable-admin-api"
     network_mode: host
+    # ports:
+    #   - "9090:9090"
     depends_on:
       - blackbox
       - snmp
-    # ports:
-    #   - "9090:9090"
   snmp:
     build:
       context: snmp/
@@ -39,7 +38,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     # ports:
-      # - "9115:9115"
+    #   - "9115:9115"
   json:
     build:
       context: json_exporter/
@@ -53,15 +52,16 @@ services:
     # - prometheus
     # Host network so grafana can query to localhost for development
     network_mode: host
-    #ports:
-    #  - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     volumes:
       - telraam_grafana_storage:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/admin:/run/secrets/admin_password
     env_file:
       - ./grafana/config.monitoring
   loki:
-    image: grafana/loki:2.9.4
+    image: grafana/loki:3.4.2
     network_mode: host
     volumes:
       - loki_storage:/loki

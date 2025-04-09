@@ -4,6 +4,7 @@ prometheus/ping_hosts.yml
 prometheus/prometheus.yml
 grafana/provisioning/datasources/datasource.yml
 grafana/config.monitoring
+grafana/admin
 timesync/config.py
 #
 

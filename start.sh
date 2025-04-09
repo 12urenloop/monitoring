@@ -20,6 +20,7 @@ rm -f \
     prometheus/ping_hosts.yml \
     prometheus/prometheus.yml \
     grafana/provisioning/datasources/datasource.yml \
+    grafana/admin \
     grafana/config.monitoring \
     timesync/config.py \
     2>/dev/null
@@ -35,6 +36,8 @@ envsubst < prometheus/prometheus.template.yml \
 mkdir -p grafana/provisioning/datasources
 envsubst < grafana/datasource.template.yml \
          > grafana/provisioning/datasources/datasource.yml
+envsubst < grafana/admin.template \
+         > grafana/admin
 envsubst < grafana/config.template.monitoring \
          > grafana/config.monitoring
 
