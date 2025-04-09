@@ -1,4 +1,4 @@
-FROM grafana/grafana:11.6
+FROM grafana/grafana:11.6.0
 
 
 RUN grafana-cli plugins install grafana-piechart-panel
