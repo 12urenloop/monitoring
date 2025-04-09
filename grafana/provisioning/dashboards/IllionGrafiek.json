@@ -24,8 +24,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
+  "id": 19,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -38,11 +38,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -73,8 +75,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -137,10 +138,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -207,7 +210,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT extract(epoch from timestamp - (LAG(timestamp) OVER (PARTITION by team_id order by timestamp))) as lap_duration,\n  $__time(\"timestamp\" - interval '2 hour')\nfrom lap l join team t on l.team_id = t.id where  t.baton_id IN ([[baton]])\n  AND lap_source_id = 4",
+          "rawSql": "SELECT extract(epoch from timestamp - (LAG(timestamp) OVER (PARTITION by l.team_id order by timestamp))) as lap_duration,\n  $__time(\"timestamp\" - interval '2 hour')\nfrom lap l\njoin team t on l.team_id = t.id\njoin team_baton_ids tb on tb.team_id = t.id\nwhere  tb.baton_id IN ([[baton]])\n  AND lap_source_id = 4",
           "refId": "B",
           "sql": {
             "columns": [
@@ -251,11 +254,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "points",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -286,8 +291,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -318,10 +322,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -393,15 +399,14 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": false,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
           "text": "C (VTK)",
           "value": "2"
         },
@@ -410,15 +415,12 @@
           "uid": "P153BFFACB2904795"
         },
         "definition": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "baton",
         "options": [],
         "query": "select b.id as __value, b.name || ' (' || COALESCE(t.name, 'none') || ')' as __text from baton b\nleft join team t on b.id = t.baton_id",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
@@ -432,6 +434,5 @@
   "timezone": "",
   "title": "Le Illion Grafiek",
   "uid": "Xn70E7a4k",
-  "version": 4,
-  "weekStart": ""
+  "version": 1
 }
