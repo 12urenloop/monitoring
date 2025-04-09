@@ -110,7 +110,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "datasource": {
@@ -191,7 +191,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "datasource": {
@@ -272,7 +272,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "avg(node_load15{instance=\"$node\",job=\"$job\"}) /  count(count(node_cpu_seconds_total{instance=\"$node\",job=\"$job\"}) by (cpu)) * 100",
@@ -342,7 +342,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "((node_memory_MemTotal_bytes{instance=\"$node\",job=\"$job\"} - node_memory_MemFree_bytes{instance=\"$node\",job=\"$job\"}) / (node_memory_MemTotal_bytes{instance=\"$node\",job=\"$job\"} )) * 100",
@@ -427,7 +427,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "((node_memory_SwapTotal_bytes{instance=\"$node\",job=\"$job\"} - node_memory_SwapFree_bytes{instance=\"$node\",job=\"$job\"}) / (node_memory_SwapTotal_bytes{instance=\"$node\",job=\"$job\"} )) * 100",
@@ -502,7 +502,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "100 - ((node_filesystem_avail_bytes{instance=\"$node\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{instance=\"$node\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"})",
@@ -577,7 +577,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=\"$node\",job=\"$job\"}) by (cpu))",
@@ -655,7 +655,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "node_time_seconds{instance=\"$node\",job=\"$job\"} - node_boot_time_seconds{instance=\"$node\",job=\"$job\"}",
@@ -734,7 +734,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "node_filesystem_size_bytes{instance=\"$node\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"}",
@@ -811,7 +811,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=\"$node\",job=\"$job\"}",
@@ -886,7 +886,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.9",
       "targets": [
         {
           "expr": "node_memory_SwapTotal_bytes{instance=\"$node\",job=\"$job\"}",
@@ -950,7 +950,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 2
+            "y": 6
           },
           "hiddenSeries": false,
           "id": 77,
@@ -975,7 +975,7 @@
             "alertThreshold": true
           },
           "percentage": true,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1132,7 +1132,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 2
+            "y": 6
           },
           "hiddenSeries": false,
           "id": 78,
@@ -1157,7 +1157,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1308,7 +1308,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 9
+            "y": 13
           },
           "hiddenSeries": false,
           "id": 74,
@@ -1335,7 +1335,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1420,7 +1420,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 9
+            "y": 13
           },
           "height": "",
           "hiddenSeries": false,
@@ -1447,7 +1447,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1549,7 +1549,7 @@
             "h": 12,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 7
           },
           "hiddenSeries": false,
           "id": 3,
@@ -1574,7 +1574,7 @@
             "alertThreshold": true
           },
           "percentage": true,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1733,7 +1733,7 @@
             "h": 12,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 7
           },
           "hiddenSeries": false,
           "id": 24,
@@ -1758,7 +1758,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1911,7 +1911,7 @@
             "h": 12,
             "w": 12,
             "x": 0,
-            "y": 33
+            "y": 19
           },
           "hiddenSeries": false,
           "id": 84,
@@ -1934,7 +1934,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2019,7 +2019,7 @@
             "h": 12,
             "w": 12,
             "x": 12,
-            "y": 33
+            "y": 19
           },
           "height": "",
           "hiddenSeries": false,
@@ -2046,7 +2046,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2118,7 +2118,7 @@
             "h": 12,
             "w": 12,
             "x": 0,
-            "y": 45
+            "y": 31
           },
           "hiddenSeries": false,
           "id": 229,
@@ -2143,7 +2143,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2314,7 +2314,7 @@
             "h": 12,
             "w": 12,
             "x": 12,
-            "y": 45
+            "y": 31
           },
           "hiddenSeries": false,
           "id": 42,
@@ -2338,7 +2338,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2450,7 +2450,7 @@
             "h": 12,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 43
           },
           "hiddenSeries": false,
           "id": 127,
@@ -2474,7 +2474,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2585,7 +2585,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 4
+            "y": 8
           },
           "hiddenSeries": false,
           "id": 136,
@@ -2610,7 +2610,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2708,7 +2708,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 4
+            "y": 8
           },
           "hiddenSeries": false,
           "id": 135,
@@ -2733,7 +2733,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2840,7 +2840,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 14
+            "y": 18
           },
           "hiddenSeries": false,
           "id": 191,
@@ -2865,7 +2865,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2985,7 +2985,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 14
+            "y": 18
           },
           "hiddenSeries": false,
           "id": 130,
@@ -3009,7 +3009,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3115,7 +3115,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 24
+            "y": 28
           },
           "hiddenSeries": false,
           "id": 138,
@@ -3140,7 +3140,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3267,7 +3267,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 24
+            "y": 28
           },
           "hiddenSeries": false,
           "id": 131,
@@ -3291,7 +3291,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3378,13 +3378,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 34
+            "y": 38
           },
           "hiddenSeries": false,
           "id": 70,
@@ -3405,9 +3411,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3504,13 +3511,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 34
+            "y": 38
           },
           "hiddenSeries": false,
           "id": 159,
@@ -3532,9 +3545,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3613,13 +3627,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 44
+            "y": 48
           },
           "hiddenSeries": false,
           "id": 129,
@@ -3640,9 +3660,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3733,13 +3754,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 44
+            "y": 48
           },
           "hiddenSeries": false,
           "id": 160,
@@ -3761,9 +3788,10 @@
           "maxPerRow": 2,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3851,13 +3879,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 54
+            "y": 58
           },
           "hiddenSeries": false,
           "id": 140,
@@ -3878,9 +3912,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -3976,13 +4011,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 54
+            "y": 58
           },
           "hiddenSeries": false,
           "id": 71,
@@ -4003,9 +4044,10 @@
           "maxPerRow": 2,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4093,13 +4135,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 68
           },
           "hiddenSeries": false,
           "id": 128,
@@ -4122,9 +4170,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4220,13 +4269,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 68
           },
           "hiddenSeries": false,
           "id": 137,
@@ -4248,9 +4303,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4338,13 +4394,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 74
+            "y": 78
           },
           "hiddenSeries": false,
           "id": 132,
@@ -4365,9 +4427,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -7358,7 +7421,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -7545,7 +7608,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -7736,7 +7799,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -7927,7 +7990,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8106,7 +8169,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8295,7 +8358,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8482,7 +8545,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8660,7 +8723,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8827,6 +8890,12 @@
           },
           "decimals": 3,
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -8854,9 +8923,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -8936,6 +9006,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -8963,9 +9039,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9026,6 +9103,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9052,9 +9135,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9122,6 +9206,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9149,9 +9239,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9214,6 +9305,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9243,9 +9340,10 @@
           "maxPerRow": 6,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9337,6 +9435,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9364,9 +9468,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9439,6 +9544,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9470,9 +9581,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9543,6 +9655,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9574,9 +9692,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9647,6 +9766,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9678,9 +9803,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9751,6 +9877,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9782,9 +9914,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9847,6 +9980,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9878,9 +10017,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -9951,6 +10091,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -9982,9 +10128,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10048,6 +10195,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10079,9 +10232,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10139,6 +10293,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10170,9 +10330,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10235,6 +10396,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10261,9 +10428,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10336,6 +10504,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10362,9 +10536,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10423,6 +10598,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10449,9 +10630,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 1,
           "points": false,
           "renderer": "flot",
@@ -10511,6 +10693,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10537,9 +10725,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 1,
           "points": false,
           "renderer": "flot",
@@ -10599,6 +10788,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10625,9 +10820,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 1,
           "points": false,
           "renderer": "flot",
@@ -10687,6 +10883,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10718,9 +10920,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10793,6 +10996,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10824,9 +11033,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -10885,6 +11095,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -10916,9 +11132,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11001,13 +11218,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 108
+            "y": 18
           },
           "hiddenSeries": false,
           "id": 63,
@@ -11030,9 +11253,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11129,13 +11353,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 108
+            "y": 18
           },
           "hiddenSeries": false,
           "id": 124,
@@ -11158,9 +11388,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11238,13 +11469,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 118
+            "y": 28
           },
           "hiddenSeries": false,
           "id": 126,
@@ -11267,9 +11504,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11329,13 +11567,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 118
+            "y": 28
           },
           "hiddenSeries": false,
           "id": 220,
@@ -11358,9 +11602,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11429,13 +11674,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 128
+            "y": 38
           },
           "hiddenSeries": false,
           "id": 125,
@@ -11458,9 +11709,10 @@
           "links": [],
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11598,7 +11850,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11711,7 +11963,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11771,6 +12023,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -11802,9 +12060,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11877,6 +12136,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -11908,9 +12173,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -11974,6 +12240,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12005,9 +12277,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12084,6 +12357,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12115,9 +12394,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12209,6 +12489,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12240,9 +12526,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12321,6 +12608,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12353,9 +12646,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12447,6 +12741,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12477,9 +12777,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12557,6 +12858,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12589,9 +12896,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12676,6 +12984,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 2,
           "fillGradient": 0,
           "gridPos": {
@@ -12706,9 +13020,10 @@
           "maxPerRow": 12,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12808,7 +13123,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 20
+            "y": 328
           },
           "hiddenSeries": false,
           "id": 40,
@@ -12832,7 +13147,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -12905,7 +13220,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 20
+            "y": 328
           },
           "hiddenSeries": false,
           "id": 157,
@@ -12927,7 +13242,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.5.0",
+          "pluginVersion": "10.1.9",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -13002,8 +13317,8 @@
       "type": "row"
     }
   ],
-  "refresh": "5m",
-  "schemaVersion": 37,
+  "refresh": "15m",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "linux"
@@ -13014,7 +13329,7 @@
         "current": {
           "selected": false,
           "text": "Prometheus",
-          "value": "Prometheus"
+          "value": "PBFA97CFB590B2093"
         },
         "hide": 0,
         "includeAll": false,
@@ -13034,6 +13349,10 @@
           "selected": false,
           "text": "node",
           "value": "node"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "",
         "hide": 0,
@@ -13058,8 +13377,12 @@
       {
         "current": {
           "selected": true,
-          "text": "172.12.50.22:9100",
-          "value": "172.12.50.22:9100"
+          "text": "172.12.50.21:9100",
+          "value": "172.12.50.21:9100"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(node_uname_info{job=\"$job\"}, instance)",
         "hide": 0,
@@ -13105,7 +13428,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {

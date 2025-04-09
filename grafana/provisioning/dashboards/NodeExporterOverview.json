@@ -648,8 +648,8 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": true,
-            "displayName": "Load"
+            "desc": false,
+            "displayName": "Host"
           }
         ]
       },
@@ -936,7 +936,7 @@
       "type": "table"
     }
   ],
-  "refresh": "30s",
+  "refresh": "15s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [
@@ -982,7 +982,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1011,6 +1011,6 @@
   "timezone": "browser",
   "title": "Node Exporter Resources Overview 2",
   "uid": "gbGKmy-Gzdsfdskjfmkl",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

@@ -230,7 +230,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "HMM"
+            "displayName": "RobustLapper"
           }
         ]
       },
