@@ -24,8 +24,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 5,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -69,8 +69,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -93,6 +92,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -100,10 +100,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -171,8 +173,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -195,6 +196,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -202,13 +204,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 20,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -284,8 +288,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -308,6 +311,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -315,13 +319,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 17,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -377,8 +383,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "orange",
@@ -433,6 +438,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -440,13 +446,15 @@
           "fields": "/^extract$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -509,7 +517,6 @@
         }
       ],
       "title": "Station latest detection",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -538,8 +545,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "orange",
@@ -593,6 +599,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -600,13 +607,15 @@
           "fields": "/^battery$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 22,
           "valueSize": 12
         },
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -727,8 +736,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -751,6 +759,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -758,13 +767,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 33,
           "valueSize": 25
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -835,8 +846,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -861,6 +871,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -868,13 +879,15 @@
           "fields": "/^abs_offset$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 14,
           "valueSize": 15
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -909,7 +922,6 @@
         }
       ],
       "title": "Time Sync | Offsets",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -934,8 +946,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -1070,7 +1081,7 @@
           "zoom": 17.4
         }
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -1081,7 +1092,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "-- cursed query\nSELECT inner2.team_name AS team_name, s.coord_x AS lat, s.coord_y AS lon, s.name as dbname\nFROM (SELECT inner1.team_name AS team_name, d.station_id\n      FROM (SELECT t.name as team_name, MAX(d.timestamp) as timestamp\n            FROM detection d\n                     join team t on d.baton_id = t.baton_id\n                     join station s on d.station_id = s.id\n            WHERE t.name IN ([[TEAM_NAME]])\n            GROUP BY t.name) inner1\n               join detection d ON d.timestamp = inner1.timestamp) inner2\nright join station s on s.id = inner2.station_id",
+          "rawSql": "-- cursed query\nSELECT inner2.team_name AS team_name, s.coord_x AS lat, s.coord_y AS lon, s.name as dbname\nFROM (SELECT inner1.team_name AS team_name, d.station_id\n      FROM (SELECT t.name as team_name, MAX(d.timestamp) as timestamp\n            FROM detection d\n                     join team_baton_ids tb on tb.baton_id = d.baton_id\n                     join team t on t.id = tb.team_id\n                     join station s on d.station_id = s.id\n            WHERE t.name IN ([[TEAM_NAME]])\n            GROUP BY t.name) inner1\n               join detection d ON d.timestamp = inner1.timestamp) inner2\nright join station s on s.id = inner2.station_id",
           "refId": "team_latest_detection_data",
           "sql": {
             "columns": [
@@ -1141,8 +1152,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "orange",
@@ -1195,6 +1205,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "allValues"
@@ -1202,12 +1213,14 @@
           "fields": "/^since$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 15
         },
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -1227,7 +1240,7 @@
           "metricColumn": "none",
           "queryParams": "",
           "rawQuery": true,
-          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))) as since, b.name || ' (' || t.name || ')' as name\nfrom detection\n         right join baton b on b.id = detection.baton_id\n         right join team t on b.id = t.baton_id\ngroup by detection.baton_id, b.name, t.name",
+          "rawSql": "select EXTRACT(EPOCH FROM (now()-max(timestamp))) as since, b.name || ' (' || t.name || ')' as name\nfrom detection\n         right join baton b on b.id = detection.baton_id\n         right join team_baton_ids tb on tb.baton_id = b.id\n         right join team t on t.id = tb.team_id\ngroup by detection.baton_id, b.name, t.name",
           "refId": "A",
           "select": [
             [
@@ -1301,8 +1314,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -1322,6 +1334,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1329,13 +1342,15 @@
           "fields": "/^uptime_ms$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 25,
           "valueSize": 15
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -1375,7 +1390,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select b.name, uptime_ms from (\n  SELECT distinct on (baton_id) baton_id, uptime_ms from detection  ORDER BY baton_id, timestamp DESC\n  ) d join baton b on d.baton_id = b.id join team t on d.baton_id = t.baton_id",
+          "rawSql": "select b.name, uptime_ms from (\n  SELECT distinct on (baton_id) baton_id, uptime_ms from detection  ORDER BY baton_id, timestamp DESC\n  ) d\n  join baton b on d.baton_id = b.id\n  join team_baton_ids tb on tb.baton_id = b.id\n  join team t on t.id = tb.team_id",
           "refId": "B",
           "sql": {
             "columns": [
@@ -1461,8 +1476,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -1485,6 +1499,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1492,13 +1507,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -1577,8 +1594,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -1601,6 +1617,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1608,13 +1625,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -1661,6 +1680,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "axisPlacement": "auto",
             "fillOpacity": 70,
             "hideFrom": {
               "legend": false,
@@ -1676,8 +1696,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -1707,10 +1726,12 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -1759,6 +1780,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "axisPlacement": "auto",
             "fillOpacity": 70,
             "hideFrom": {
               "legend": false,
@@ -1790,8 +1812,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -1820,11 +1841,12 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -1865,6 +1887,10 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 2,
         "w": 11,
@@ -1877,11 +1903,19 @@
         "clockType": "24 hour",
         "countdownSettings": {
           "endCountdownTime": "2023-04-26T14:58:50+02:00",
-          "endText": "00:00:00"
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "countupSettings": {
-          "beginCountupTime": "2024-04-24T09:00:00+02:00",
-          "beginText": "00:00:00"
+          "beginCountupTime": "2025-04-29T09:00:00+02:00",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "dateSettings": {
           "dateFormat": "YYYY-MM-DD",
@@ -1889,6 +1923,13 @@
           "fontWeight": "normal",
           "locale": "",
           "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "noValueText": "no description found",
+          "source": "none"
         },
         "fontMono": false,
         "mode": "countup",
@@ -1905,13 +1946,23 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.5",
+      "pluginVersion": "2.1.8",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
       "type": "grafana-clock-panel"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -1925,11 +1976,19 @@
         "clockType": "24 hour",
         "countdownSettings": {
           "endCountdownTime": "2023-04-26T14:58:50+02:00",
-          "endText": "00:00:00"
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "countupSettings": {
           "beginCountupTime": "2023-04-26T14:58:50+02:00",
-          "beginText": "00:00:00"
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "dateSettings": {
           "dateFormat": "YYYY-MM-DD",
@@ -1937,6 +1996,13 @@
           "fontWeight": "normal",
           "locale": "",
           "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "noValueText": "no description found",
+          "source": "none"
         },
         "fontMono": false,
         "mode": "time",
@@ -1953,13 +2019,23 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.5",
+      "pluginVersion": "2.1.8",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
       "type": "grafana-clock-panel"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
       },
       "gridPos": {
         "h": 2,
@@ -1972,12 +2048,20 @@
         "bgColor": "",
         "clockType": "24 hour",
         "countdownSettings": {
-          "endCountdownTime": "2024-04-24T21:00:00+02:00",
-          "endText": "00:00:00"
+          "endCountdownTime": "2025-04-29T21:00:00+02:00",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "countupSettings": {
           "beginCountupTime": "2023-04-26T09:00:00+02:00",
-          "beginText": "00:00:00"
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
         },
         "dateSettings": {
           "dateFormat": "YYYY-MM-DD",
@@ -1985,6 +2069,13 @@
           "fontWeight": "normal",
           "locale": "",
           "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "noValueText": "no description found",
+          "source": "none"
         },
         "fontMono": false,
         "mode": "countdown",
@@ -2001,19 +2092,24 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.5",
+      "pluginVersion": "2.1.8",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "",
       "type": "grafana-clock-panel"
     }
   ],
+  "preload": false,
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
           "text": [
             "HILOK",
             "VTK"
@@ -2028,7 +2124,6 @@
           "uid": "P153BFFACB2904795"
         },
         "definition": "select name as team_name from team",
-        "hide": 0,
         "includeAll": false,
         "multi": true,
         "name": "TEAM_NAME",
@@ -2036,8 +2131,6 @@
         "query": "select name as team_name from team",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -2050,6 +2143,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 2,
-  "weekStart": ""
+  "version": 5
 }
