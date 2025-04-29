@@ -95,7 +95,7 @@ scrape_configs:
         replacement: "localhost:7979"
 
   - job_name: node
-    scrape_interval: 5s
+    scrape_interval: 15s
     static_configs:
       - targets: [
           '$RONNY01_IP:9100',

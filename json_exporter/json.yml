@@ -2,7 +2,7 @@
 modules:
   loxsi:
     headers:
-      Loxsi-Key: lekey
+      Loxsi-Key: g&jXrz2JR@sZPS
     metrics:
     - name: count
       path: '{ .count }'

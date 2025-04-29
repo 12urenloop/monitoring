@@ -25,8 +25,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 16,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -52,8 +52,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -234,7 +233,7 @@
           }
         ]
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -439,8 +438,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -460,6 +458,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -467,13 +466,15 @@
           "fields": "/^laps$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 50,
           "valueSize": 150
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -506,11 +507,217 @@
       ],
       "title": "Top 3",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "P153BFFACB2904795"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value VTK"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ff00f6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "value VTK",
+                  "value HILOK"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Name",
+          "sortDesc": false
+        },
+        "timezone": [
+          ""
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "WITH DATA AS (\nSELECT\n   lap.id,\n   lap.team_id,\n   lap.timestamp,\n   COUNT(1) as count -- Creates a column of \"1\" for counting the occurrences\n   FROM lap\n   where lap_source_id=5\n   GROUP BY 1, timestamp, team_id\n)\nSELECT\n   t.name as name,\n   timestamp as time,\n   SUM(count) OVER (PARTITION BY team_id\n                           ORDER BY team_id, timestamp\n                           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as value\nFROM DATA d\nJOIN team t on t.id = d.team_id\nORDER BY time ASC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "12urenloop CTF",
+      "transformations": [
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "YYYY-MM-DD HH:mm:ss",
+            "timeField": "Time",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Time"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value HILOK"
+                }
+              },
+              "operator": "-",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value VTK"
+                }
+              }
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value HILOK",
+                "value VTK"
+              ],
+              "reducer": "max"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
     }
   ],
-  "refresh": " 5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": []
@@ -521,8 +728,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "1s",
-      " 3s",
       " 5s",
       "10s",
       "30s",
@@ -536,6 +741,5 @@
   "timezone": "",
   "title": "Laps overview",
   "uid": "y9DWmy_Wk",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }

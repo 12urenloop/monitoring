@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 13,
   "links": [],
   "panels": [
     {
@@ -370,8 +370,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
+        "type": "grafana-postgresql-datasource",
+        "uid": "${SCHEMA}"
       },
       "fieldConfig": {
         "defaults": {
@@ -459,8 +459,8 @@
         {
           "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "fields": [
@@ -521,8 +521,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
+        "type": "grafana-postgresql-datasource",
+        "uid": "${SCHEMA}"
       },
       "fieldConfig": {
         "defaults": {
@@ -619,8 +619,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1085,7 +1085,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
+            "type": "grafana-postgresql-datasource",
             "uid": "P153BFFACB2904795"
           },
           "editorMode": "code",
@@ -1139,8 +1139,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
+        "type": "grafana-postgresql-datasource",
+        "uid": "${SCHEMA}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1225,8 +1225,8 @@
         {
           "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "fields": [
@@ -1383,8 +1383,8 @@
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "format": "table",
@@ -2132,6 +2132,18 @@
         "refresh": 2,
         "regex": "",
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "Telraan Postgres Replica",
+          "value": "P153BFFACB2904795"
+        },
+        "name": "SCHEMA",
+        "options": [],
+        "query": "grafana-postgresql-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
       }
     ]
   },
@@ -2143,5 +2155,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 5
+  "version": 2
 }

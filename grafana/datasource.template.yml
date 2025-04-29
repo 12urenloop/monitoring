@@ -50,10 +50,15 @@ datasources:
   - name: 'Telraam API'
     type: 'marcusolsson-json-datasource'
     url: '$IP_PORT_TELRAAM'
-    # url: 'http://10.1.0.200:8080'
   - name: 'Telraam Admin API'
     type: 'marcusolsson-json-datasource'
     url: '$IP_TELRAAM:8081'
+  - name: 'Telraam API'
+    type: 'marcusolsson-json-datasource'
+    url: '$IP_PORT_TELRAAM_RECTOR'
+  - name: 'Telraam Admin API'
+    type: 'marcusolsson-json-datasource'
+    url: '$IP_TELRAAM_RECTOR:8081'
   - name: 'Data API'
     type: 'marcusolsson-json-datasource'
     url: 'http://localhost:8000'
@@ -62,9 +67,19 @@ datasources:
     url: 'http://localhost:3030'
   - name: 'Telraan Postgres Replica'
     type: postgres
-    url: $CLIENT2_IP:5432
+    url: localhost:5432
     user: monitoring_user
     database: 'telraam_dev'
+    secureJsonData:
+      password: '$MONITORING_DB_PASSWORD'
+    jsonData:
+      sslmode: 'disable'
+      postgresVersion: 1500
+  - name: 'Telraan Rector Postgres Replica'
+    type: postgres
+    url: localhost:5432
+    user: monitoring_user
+    database: 'telraam_rector'
     secureJsonData:
       password: '$MONITORING_DB_PASSWORD'
     jsonData:

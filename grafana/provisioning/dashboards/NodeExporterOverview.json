@@ -24,10 +24,9 @@
   "description": "Node resources overview provided from Prometheus nodeExporter metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 13702,
   "graphTooltip": 0,
+  "id": 8,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -54,8 +53,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -88,8 +86,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -131,8 +128,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -174,8 +170,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -231,8 +226,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -278,8 +272,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -317,8 +310,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "#EAB839",
@@ -368,8 +360,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -415,8 +406,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -462,8 +452,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -547,8 +536,7 @@
                   "mode": "percentage",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -594,8 +582,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -623,6 +610,54 @@
               {
                 "id": "custom.width",
                 "value": 99
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temp"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 70
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 72
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -653,7 +688,7 @@
           }
         ]
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -806,6 +841,21 @@
           "interval": "",
           "legendFormat": "",
           "refId": "N"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "max(node_hwmon_temp_celsius{job=~\"$job\"}) by (instance)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "",
+          "range": false,
+          "refId": "B"
         }
       ],
       "title": "Node resources usage ",
@@ -835,7 +885,7 @@
               "Time 8": true,
               "Time 9": true,
               "Value #A": true,
-              "Value #B": true,
+              "Value #B": false,
               "Value #C": false,
               "Value #E": true,
               "__name__ 1": true,
@@ -869,50 +919,54 @@
               "sysname": true,
               "version": true
             },
+            "includeByName": {},
             "indexByName": {
-              "Time 1": 13,
-              "Time 10": 34,
-              "Time 11": 36,
-              "Time 12": 37,
-              "Time 2": 21,
-              "Time 3": 24,
-              "Time 4": 27,
-              "Time 5": 28,
-              "Time 6": 29,
-              "Time 7": 30,
-              "Time 8": 31,
-              "Time 9": 32,
-              "Value #A": 12,
+              "Time 1": 14,
+              "Time 10": 35,
+              "Time 11": 37,
+              "Time 12": 38,
+              "Time 13": 39,
+              "Time 2": 22,
+              "Time 3": 25,
+              "Time 4": 28,
+              "Time 5": 29,
+              "Time 6": 30,
+              "Time 7": 31,
+              "Time 8": 32,
+              "Time 9": 33,
+              "Value #A": 13,
+              "Value #B": 5,
               "Value #C": 2,
               "Value #D": 3,
               "Value #F": 4,
-              "Value #G": 5,
-              "Value #H": 6,
-              "Value #I": 10,
-              "Value #J": 11,
-              "Value #K": 7,
-              "Value #L": 8,
+              "Value #G": 6,
+              "Value #H": 7,
+              "Value #I": 11,
+              "Value #J": 12,
+              "Value #K": 8,
+              "Value #L": 9,
               "Value #M": 1,
-              "Value #N": 9,
-              "__name__ 1": 14,
-              "__name__ 2": 22,
-              "domainname": 15,
-              "instance": 26,
-              "job 1": 16,
-              "job 2": 23,
-              "job 3": 25,
-              "job 4": 33,
-              "job 5": 35,
-              "machine": 17,
+              "Value #N": 10,
+              "__name__ 1": 15,
+              "__name__ 2": 23,
+              "domainname": 16,
+              "instance": 27,
+              "job 1": 17,
+              "job 2": 24,
+              "job 3": 26,
+              "job 4": 34,
+              "job 5": 36,
+              "machine": 18,
               "nodename": 0,
-              "release": 18,
-              "sysname": 19,
-              "version": 20
+              "release": 19,
+              "sysname": 20,
+              "version": 21
             },
             "renameByName": {
               "Difference": "Core-LA1",
+              "Time 13": "",
               "Value #A": "",
-              "Value #B": "LA1",
+              "Value #B": "Temp",
               "Value #C": "CPU",
               "Value #D": "Memory",
               "Value #E": "Cores",
@@ -936,9 +990,9 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "15s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [
     "prometheus",
     "nodeExporter"
@@ -947,7 +1001,6 @@
     "list": [
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -972,12 +1025,8 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       }
     ]
   },
@@ -986,8 +1035,6 @@
     "to": "now"
   },
   "timepicker": {
-    "hidden": false,
-    "now": true,
     "refresh_intervals": [
       "15s",
       "30s",
@@ -995,22 +1042,10 @@
       "5m",
       "15m",
       "30m"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
     ]
   },
   "timezone": "browser",
   "title": "Node Exporter Resources Overview 2",
   "uid": "gbGKmy-Gzdsfdskjfmkl",
-  "version": 2,
-  "weekStart": ""
+  "version": 1
 }

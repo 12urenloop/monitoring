@@ -24,13 +24,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 19,
+  "id": 5,
   "links": [],
   "panels": [
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
+        "type": "grafana-postgresql-datasource",
+        "uid": "${SCHEMA}"
       },
       "fieldConfig": {
         "defaults": {
@@ -147,8 +147,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -203,8 +203,8 @@
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "format": "table",
@@ -245,8 +245,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P153BFFACB2904795"
+        "type": "grafana-postgresql-datasource",
+        "uid": "${SCHEMA}"
       },
       "fieldConfig": {
         "defaults": {
@@ -331,8 +331,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P153BFFACB2904795"
+            "type": "grafana-postgresql-datasource",
+            "uid": "${SCHEMA}"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -423,6 +423,18 @@
         "regex": "",
         "sort": 1,
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "Telraan Postgres Replica",
+          "value": "P153BFFACB2904795"
+        },
+        "name": "SCHEMA",
+        "options": [],
+        "query": "grafana-postgresql-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
       }
     ]
   },
@@ -434,5 +446,5 @@
   "timezone": "",
   "title": "Le Illion Grafiek",
   "uid": "Xn70E7a4k",
-  "version": 1
+  "version": 2
 }

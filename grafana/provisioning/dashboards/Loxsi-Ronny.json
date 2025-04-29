@@ -18,8 +18,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 14,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -32,11 +32,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 20,
             "gradientMode": "opacity",
@@ -68,8 +70,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -95,10 +96,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -162,8 +165,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -186,6 +188,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -193,13 +196,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -278,8 +283,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -302,6 +306,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -309,13 +314,15 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -368,8 +375,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -388,6 +394,8 @@
       },
       "id": 10,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -397,9 +405,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -445,6 +454,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "axisPlacement": "auto",
             "fillOpacity": 70,
             "hideFrom": {
               "legend": false,
@@ -476,8 +486,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -506,11 +515,12 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.2.0-33922pre",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -557,6 +567,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "axisPlacement": "auto",
             "fillOpacity": 70,
             "hideFrom": {
               "legend": false,
@@ -572,8 +583,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
@@ -603,10 +613,12 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "exemplar": true,
@@ -659,8 +671,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -679,6 +690,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -686,9 +698,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -725,8 +739,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -745,6 +758,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -752,9 +766,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -797,8 +813,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "orange",
@@ -853,6 +868,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -860,13 +876,15 @@
           "fields": "/^extract$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 16,
           "valueSize": 10
         },
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 300,
@@ -929,7 +947,6 @@
         }
       ],
       "title": "Station latest detection",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -947,8 +964,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -967,6 +983,7 @@
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -974,10 +991,12 @@
           "fields": "/^c$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -987,7 +1006,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select name, c from (select station_id, count(*) as c from detection GROUP BY detection.station_id) cs join station s on cs.station_id = s.id",
+          "rawSql": "select name, c from (select station_id, count(*) as c from detection GROUP BY detection.station_id) cs join station s on cs.station_id = s.id order by name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1010,13 +1029,12 @@
         }
       ],
       "title": "Ronny Detection count",
-      "transformations": [],
       "type": "stat"
     }
   ],
+  "preload": false,
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [
     "Loxsi",
     "Ronny"
@@ -1032,6 +1050,5 @@
   "timezone": "",
   "title": "Loxsi - Ronny",
   "uid": "d3315255-d884-45ac-a3e6-8dddc26ea0f0",
-  "version": 6,
-  "weekStart": ""
+  "version": 17
 }
