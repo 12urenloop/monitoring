@@ -147,7 +147,6 @@
               "type": "range"
             }
           ],
-          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -888,5 +887,5 @@
   "timezone": "browser",
   "title": "network-traffic-ng",
   "uid": "ffjw0fkt1kow0c",
-  "version": 5
+  "version": 6
 }
