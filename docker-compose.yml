@@ -2,7 +2,6 @@
 volumes:
   telraam_grafana_storage: {}
   prometheus_data: {}
-  loki_storage: {}
 
 services:
   timesync:
@@ -60,10 +59,3 @@ services:
       - ./grafana/admin:/run/secrets/admin_password
     env_file:
       - ./grafana/config.monitoring
-  loki:
-    image: grafana/loki:3.4.2
-    network_mode: host
-    volumes:
-      - loki_storage:/loki
-      - ./loki/:/etc/loki
-    command: -config.file=/etc/loki/local-config.yml
