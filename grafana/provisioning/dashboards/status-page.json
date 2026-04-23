@@ -1910,7 +1910,7 @@
           "source": "input"
         },
         "countupSettings": {
-          "beginCountupTime": "2025-04-29T09:00:00+02:00",
+          "beginCountupTime": "2026-04-29T09:00:00+02:00",
           "beginText": "00:00:00",
           "invalidValueText": "invalid value",
           "noValueText": "no value found",
@@ -2048,7 +2048,7 @@
         "bgColor": "",
         "clockType": "24 hour",
         "countdownSettings": {
-          "endCountdownTime": "2025-04-29T21:00:00+02:00",
+          "endCountdownTime": "2026-04-29T21:00:00+02:00",
           "endText": "00:00:00",
           "invalidValueText": "invalid value",
           "noValueText": "no value found",
