@@ -63,10 +63,10 @@ datasources:
   - name: 'Telraan Postgres Replica'
     type: postgres
     url: $CLIENT2_IP:5432
-    user: monitoring_user
-    database: 'telraam_dev'
+    user: '$TELRAAM_DB_USER'
+    database: '$TELRAAM_DB'
     secureJsonData:
-      password: '$MONITORING_DB_PASSWORD'
+      password: '$TELRAAM_DB_PASSWORD'
     jsonData:
       sslmode: 'disable'
       postgresVersion: 1500
