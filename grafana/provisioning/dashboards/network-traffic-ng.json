@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 20,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -94,7 +94,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "ifOperStatus{ifName=~\"ether1\"}",
+          "expr": "ifOperStatus{ifName=~\"ether10\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "ABDIJ Link",
@@ -200,7 +200,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(ifHCInOctets{ifName=\"ether1\"}[$__rate_interval])",
+          "expr": "rate(ifHCInOctets{ifName=\"ether10\"}[$__rate_interval])",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "legendFormat": "ABDIJ Download",
@@ -382,7 +382,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(ifHCInOctets{ifName=\"ether1\"}[$__rate_interval])",
+          "expr": "rate(ifHCInOctets{ifName=\"ether10\"}[$__rate_interval])",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "legendFormat": "ABDIJ Download",
@@ -397,7 +397,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(ifHCOutOctets{ifName=\"ether1\"}[$__rate_interval]) * -1",
+          "expr": "rate(ifHCOutOctets{ifName=\"ether10\"}[$__rate_interval]) * -1",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -887,5 +887,5 @@
   "timezone": "browser",
   "title": "network-traffic-ng",
   "uid": "ffjw0fkt1kow0c",
-  "version": 6
+  "version": 1
 }
