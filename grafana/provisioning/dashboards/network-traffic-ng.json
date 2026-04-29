@@ -134,28 +134,16 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "index": 0,
-                  "text": "DOWN"
-                },
-                "to": 2
-              },
-              "type": "range"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "dark-orange"
               },
               {
                 "color": "green",
-                "value": 50
+                "value": 50000
               }
             ]
           },
@@ -887,5 +875,5 @@
   "timezone": "browser",
   "title": "network-traffic-ng",
   "uid": "ffjw0fkt1kow0c",
-  "version": 1
+  "version": 2
 }
