@@ -51,6 +51,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /etc/timezone:/etc/timezone:ro
+      - ./json_exporter/json.yml:/etc/json_exporter/config.yml
     network_mode: host
   grafana:
     build:
