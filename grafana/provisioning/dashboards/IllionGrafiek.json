@@ -18,13 +18,48 @@
           "type": "dashboard"
         },
         "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "P153BFFACB2904795"
+        },
+        "enable": true,
+        "hide": false,
+        "iconColor": "super-light-blue",
+        "mappings": {},
+        "name": "Laps",
+        "target": {
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  time,\n  round(lap_duration::numeric, 2)::text || 's' AS text,\n  'lap' AS tags\nFROM (\n  SELECT\n    timestamp - interval '2 hour' AS time,\n    extract(epoch from timestamp - LAG(timestamp) OVER (PARTITION BY l.team_id ORDER BY timestamp)) AS lap_duration\n  FROM lap l\n  JOIN team t ON l.team_id = t.id\n  JOIN team_baton_ids tb ON tb.team_id = t.id\n  WHERE tb.baton_id IN ([[baton]])\n    AND lap_source_id = 5\n) sub\nWHERE $__timeFilter(time)\n  AND lap_duration IS NOT NULL",
+          "refId": "Anno",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
       }
     ]
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 8,
+  "id": 16,
   "links": [],
   "panels": [
     {
@@ -114,6 +149,10 @@
                   "fixedColor": "super-light-blue",
                   "mode": "shades"
                 }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
               }
             ]
           }
@@ -210,7 +249,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT extract(epoch from timestamp - (LAG(timestamp) OVER (PARTITION by l.team_id order by timestamp))) as lap_duration,\n  $__time(\"timestamp\" - interval '2 hour')\nfrom lap l\njoin team t on l.team_id = t.id\njoin team_baton_ids tb on tb.team_id = t.id\nwhere  tb.baton_id IN ([[baton]])\n  AND lap_source_id = 4",
+          "rawSql": "SELECT extract(epoch from timestamp - (LAG(timestamp) OVER (PARTITION by l.team_id order by timestamp))) as lap_duration,\n  $__time(\"timestamp\" - interval '2 hour')\nfrom lap l\njoin team t on l.team_id = t.id\njoin team_baton_ids tb on tb.team_id = t.id\nwhere  tb.baton_id IN ([[baton]])\n  AND lap_source_id = 5",
           "refId": "B",
           "sql": {
             "columns": [
@@ -434,5 +473,5 @@
   "timezone": "",
   "title": "Le Illion Grafiek",
   "uid": "Xn70E7a4k",
-  "version": 1
+  "version": 2
 }
