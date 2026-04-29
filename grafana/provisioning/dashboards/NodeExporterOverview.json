@@ -24,10 +24,9 @@
   "description": "Node resources overview provided from Prometheus nodeExporter metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 13702,
   "graphTooltip": 0,
+  "id": 9,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -54,8 +53,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -88,8 +86,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -131,8 +128,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -174,8 +170,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -231,8 +226,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -278,8 +272,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -317,8 +310,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "#EAB839",
@@ -368,8 +360,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -415,8 +406,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -462,8 +452,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -547,8 +536,7 @@
                   "mode": "percentage",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -594,8 +582,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "yellow",
@@ -623,6 +610,43 @@
               {
                 "id": "custom.width",
                 "value": 99
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temp"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 75
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -653,7 +677,7 @@
           }
         ]
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -806,6 +830,20 @@
           "interval": "",
           "legendFormat": "",
           "refId": "N"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_celsius{job=~\"$job\"}",
+          "format": "table",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Node resources usage ",
@@ -835,12 +873,13 @@
               "Time 8": true,
               "Time 9": true,
               "Value #A": true,
-              "Value #B": true,
+              "Value #B": false,
               "Value #C": false,
               "Value #E": true,
               "__name__ 1": true,
               "__name__ 2": true,
               "__name__ 3": true,
+              "chip": true,
               "datacenter 1": true,
               "datacenter 2": true,
               "datacenter 3": true,
@@ -866,9 +905,11 @@
               "machine": true,
               "nodename": false,
               "release": true,
+              "sensor": true,
               "sysname": true,
               "version": true
             },
+            "includeByName": {},
             "indexByName": {
               "Time 1": 13,
               "Time 10": 34,
@@ -912,7 +953,7 @@
             "renameByName": {
               "Difference": "Core-LA1",
               "Value #A": "",
-              "Value #B": "LA1",
+              "Value #B": "Temp",
               "Value #C": "CPU",
               "Value #D": "Memory",
               "Value #E": "Cores",
@@ -936,9 +977,9 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "15s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [
     "prometheus",
     "nodeExporter"
@@ -947,7 +988,6 @@
     "list": [
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -972,12 +1012,8 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       }
     ]
   },
@@ -986,8 +1022,6 @@
     "to": "now"
   },
   "timepicker": {
-    "hidden": false,
-    "now": true,
     "refresh_intervals": [
       "15s",
       "30s",
@@ -995,22 +1029,10 @@
       "5m",
       "15m",
       "30m"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
     ]
   },
   "timezone": "browser",
   "title": "Node Exporter Resources Overview 2",
   "uid": "gbGKmy-Gzdsfdskjfmkl",
-  "version": 2,
-  "weekStart": ""
+  "version": 1
 }
