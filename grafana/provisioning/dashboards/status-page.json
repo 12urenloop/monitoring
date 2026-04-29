@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -587,7 +587,7 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 8,
         "x": 16,
         "y": 3
@@ -1491,7 +1491,7 @@
         "h": 3,
         "w": 8,
         "x": 16,
-        "y": 11
+        "y": 9
       },
       "id": 4,
       "options": {
@@ -1609,7 +1609,7 @@
         "h": 3,
         "w": 8,
         "x": 16,
-        "y": 14
+        "y": 12
       },
       "id": 6,
       "options": {
@@ -1712,7 +1712,7 @@
         "h": 7,
         "w": 4,
         "x": 16,
-        "y": 17
+        "y": 15
       },
       "id": 2,
       "options": {
@@ -1827,7 +1827,7 @@
         "h": 7,
         "w": 4,
         "x": 20,
-        "y": 17
+        "y": 15
       },
       "id": 7,
       "options": {
@@ -1888,6 +1888,111 @@
         "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed+area"
+            }
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "max": 110,
+          "min": 60,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 22
+      },
+      "id": 37,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "max(node_hwmon_temp_celsius{instance=~\"172.12.50.10[1-8]:9100\"}) by (instance)",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Ronny temperature",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
         "defaults": {},
         "overrides": []
       },
@@ -1931,9 +2036,16 @@
           "noValueText": "no description found",
           "source": "none"
         },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
         "fontMono": false,
         "mode": "countup",
         "refresh": "sec",
+        "style": "text",
         "timeSettings": {
           "fontSize": "40px",
           "fontWeight": "bold"
@@ -1946,7 +2058,7 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.8",
+      "pluginVersion": "3.2.2",
       "targets": [
         {
           "refId": "A"
@@ -2004,9 +2116,16 @@
           "noValueText": "no description found",
           "source": "none"
         },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
         "fontMono": false,
         "mode": "time",
         "refresh": "sec",
+        "style": "text",
         "timeSettings": {
           "fontSize": "80px",
           "fontWeight": "bold"
@@ -2019,7 +2138,7 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.8",
+      "pluginVersion": "3.2.2",
       "targets": [
         {
           "refId": "A"
@@ -2077,9 +2196,16 @@
           "noValueText": "no description found",
           "source": "none"
         },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
         "fontMono": false,
         "mode": "countdown",
         "refresh": "sec",
+        "style": "text",
         "timeSettings": {
           "fontSize": "40px",
           "fontWeight": "bold"
@@ -2092,7 +2218,7 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.8",
+      "pluginVersion": "3.2.2",
       "targets": [
         {
           "refId": "A"
@@ -2143,5 +2269,5 @@
   "timezone": "",
   "title": "Status Page",
   "uid": "p1pzxREnk",
-  "version": 5
+  "version": 1
 }
