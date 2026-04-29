@@ -24,8 +24,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 5,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -38,11 +38,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "opacity",
@@ -78,8 +80,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -114,7 +115,7 @@
         ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 9,
         "w": 17,
         "x": 0,
         "y": 0
@@ -132,11 +133,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -171,7 +173,6 @@
         }
       ],
       "title": "Lap time over time Chosen lapper",
-      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -189,8 +190,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -232,7 +232,7 @@
         ]
       },
       "gridPos": {
-        "h": 22,
+        "h": 17,
         "w": 7,
         "x": 17,
         "y": 0
@@ -244,6 +244,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -251,12 +252,14 @@
           "fields": "/^since$/",
           "values": true
         },
+        "showPercentChange": false,
         "text": {
           "titleSize": 15
         },
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.9",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -307,11 +310,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "opacity",
@@ -347,8 +352,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -383,10 +387,10 @@
         ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 8,
         "w": 17,
         "x": 0,
-        "y": 11
+        "y": 9
       },
       "id": 4,
       "options": {
@@ -401,11 +405,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "cacheDurationSeconds": 0,
@@ -441,23 +446,134 @@
       ],
       "title": "Lap time over time RobustLapper",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "P153BFFACB2904795"
+      },
+      "description": "How to read the chart: lower line = faster team. If baton 2's line crosses below baton 3's, that's the moment baton 2 starts being the faster team over a sustained window — a good signal of an overtake in progress. The 25th percentile specifically tells you about each team's good laps rather than their typical pace, which can be an earlier signal than the median: a team often shows their better laps before their average catches up.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "P153BFFACB2904795"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "WITH lap_durations AS (\n  SELECT\n    l.timestamp,\n    tb.baton_id,\n    team.name as team_name,\n    extract(epoch from l.timestamp - LAG(l.timestamp)\n      OVER (PARTITION BY tb.baton_id ORDER BY l.timestamp)\n    ) AS lap_duration\n  FROM lap l\n  JOIN team_baton_ids tb ON tb.team_id = l.team_id\n  JOIN team ON tb.team_id = team.id\n  WHERE team.name IN ($Teams)\n    AND l.lap_source_id = 5\n),\nnumbered AS (\n  SELECT\n    timestamp,\n    baton_id,\n    team_name,\n    lap_duration,\n    ROW_NUMBER() OVER (PARTITION BY baton_id ORDER BY timestamp) AS rn\n  FROM lap_durations\n  WHERE lap_duration IS NOT NULL\n)\nSELECT\n  $__time(a.timestamp - interval '2 hour'),\n  a.team_name AS metric,\n  (\n    SELECT percentile_cont(0.90) WITHIN GROUP (ORDER BY b.lap_duration)\n    FROM numbered b\n    WHERE b.baton_id = a.baton_id\n      AND b.rn BETWEEN a.rn - 25 AND a.rn\n  ) AS p25_lap_time\nFROM numbered a\nWHERE $__timeFilter(a.timestamp - interval '2 hour')\n  AND a.rn >= 10\nORDER BY a.timestamp",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Who is gaining?",
+      "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
           "text": "4",
           "value": "4"
         },
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "Lapper",
         "options": [
           {
@@ -477,9 +593,32 @@
           }
         ],
         "query": "2,4,5",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "text": [
+            "HILOK",
+            "VTK"
+          ],
+          "value": [
+            "HILOK",
+            "VTK"
+          ]
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "P153BFFACB2904795"
+        },
+        "definition": "SELECT team.name FROM team_baton_ids JOIN team on team.id = team_id;",
+        "label": "team",
+        "multi": true,
+        "name": "Teams",
+        "options": [],
+        "query": "SELECT team.name FROM team_baton_ids JOIN team on team.id = team_id;",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
       }
     ]
   },
@@ -491,6 +630,5 @@
   "timezone": "",
   "title": "Lap times",
   "uid": "t3OIEkaVk",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }
